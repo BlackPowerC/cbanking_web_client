@@ -8,22 +8,20 @@
     margin-bottom: 50px;
 }
 
-.card
+.card .main
 {
     margin: auto;
 }
 
 .main
 {
-    width: 65%;
-    margin: auto;
+    width: 45%;
     margin-top: 50px;
 }
 
 .card
 {
     width: 100%;
-    /*margin: auto;*/
     padding: 15px;
     background-color: lightgray;
 }

@@ -8,14 +8,14 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../vendor/twbs/bootstrap/dist/css/bootstrap.css" id="bootstrap3" />
-    <link rel="stylesheet" href="../style/main.css" id="main" />
+    <link rel="stylesheet" href="../style/main.css" id="maincss" />
     <title>Connexion</title>
 </head>
 
 <body>
     <div class="main container container-fluid">
         <div class="row">
-            <div class="col-lg-8 col-md-6 col-sm-3">
+            <div id="main_content" class="col-lg-12 col-md-12 col-sm-12">
                 <div class="header text-center">
                     <h1>CBANKING WEB CLIENT</h1>
                     <span>Connectez-vous à votre compte !</span>
