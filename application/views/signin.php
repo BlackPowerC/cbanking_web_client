@@ -35,7 +35,7 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
                             </div>
                             <input style="width: 100%" id="btn-submit" class="btn btn-primary" type="submit" value="Envoyer" />
                         </form>
-                        <a class="btn btn-link" href="">Mot de passe oublié ?</a>
+                        <a class="btn btn-link" title="mot de passe oublié" href="">Mot de passe oublié ?</a>
                     </div>
                 </div>
             </div>
