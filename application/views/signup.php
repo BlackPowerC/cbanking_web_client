@@ -9,10 +9,13 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../vendor/twbs/bootstrap/dist/css/bootstrap.css" id="bootstrap3" />
     <link rel="stylesheet" href="../style/main.css" id="maincss" />
+    <script src="../vendor/components/jquery/jquery.js"></script>
+    <script src="../vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
     <title>Inscription</title>
 </head>
 
 <body>
+<?php include_once "navbar.inc.php" ?>
 <div class="main container container-fluid">
     <div class="row">
         <div id="main_content" class="col-lg-12 col-md-12 col-sm-12">
