@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites>
+  <testsuite name="SignupTest" file="/home/jordy/public_html/cbanking_web_client.git/application/tests/SignupTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.016903">
+    <testcase name="passwordLessThanSixChars" class="SignupTest" classname="SignupTest" file="/home/jordy/public_html/cbanking_web_client.git/application/tests/SignupTest.php" line="29" assertions="1" time="0.016903"/>
+  </testsuite>
+</testsuites>
