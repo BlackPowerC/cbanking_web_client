@@ -39,6 +39,13 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
                     <div style="width: 100%" class="form-group">
                         <input class="form-control" value="<?php echo set_value("passwd"); ?>" name="passwd" type="password" placeholder="Mot de passe"/>
                     </div>
+                    <div style="width: 100%" class="form-group">
+                        <label class="label" for="">Type d'utilisateur</label>
+                        <select class="form-control" name="type">
+                            <option value="client">Client</option>
+                            <option value="employee">Employé</option>
+                        </select>
+                    </div>
                     <input style="width: 100%" id="btn-submit" class="btn btn-primary" type="submit" value="Envoyer" />
                     </form>
                 </div>

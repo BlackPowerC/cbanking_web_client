@@ -15,19 +15,38 @@ defined('VENDOR') OR exit('No direct script access allowed');
  */
 class SignupTest extends TestCase
 {
-    private $signup ;
-
-    public function __construct($name = null, array $data = [], $dataName = '')
+    public function setUp()
     {
-        parent::__construct($name, $data, $dataName);
         $this->signup = new Signup() ;
     }
 
-    /**
-     * @test
-     */
-    public function passwordLessThanSixChars()
+    public function test_passwordLessThanSixChars()
     {
         $this->assertFalse($this->signup->check_password("jor"), "passwordLessThanSixChars") ;
+    }
+
+    public function test_passwordMoreThanSixChars()
+    {
+        $this->assertFalse($this->signup->check_password("i*am*a*legend"), "passwordMoreThanSixChars") ;
+    }
+
+    public function test_passwordMoreThanSixCharsWithLettersAndNumbers()
+    {
+        $this->assertTrue($this->signup->check_password("azerty1234"), "passwordMoreThanSixCharsWithLettersAndNumbers") ;
+    }
+
+    public function test_emptyName()
+    {
+        $this->assertFalse($this->signup->check_name(""), "emptyName");
+    }
+
+    public function test_nameWithNumber()
+    {
+        $this->assertFalse($this->signup->check_name("jordy1234"), "nameWithNumber") ;
+    }
+
+    public function test_nameEqualJordy()
+    {
+        $this->assertTrue($this->signup->check_name("jordy"), "nameEqualJordy") ;
     }
 }

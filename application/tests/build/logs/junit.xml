@@ -1,6 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuites>
-  <testsuite name="SignupTest" file="/home/jordy/public_html/cbanking_web_client.git/application/tests/SignupTest.php" tests="1" assertions="1" errors="0" failures="0" skipped="0" time="0.016903">
-    <testcase name="passwordLessThanSixChars" class="SignupTest" classname="SignupTest" file="/home/jordy/public_html/cbanking_web_client.git/application/tests/SignupTest.php" line="29" assertions="1" time="0.016903"/>
+  <testsuite name="SignupTest" file="/home/jordy/public_html/cbanking_web_client.git/application/tests/SignupTest.php" tests="6" assertions="6" errors="0" failures="0" skipped="0" time="0.163198">
+    <testcase name="test_passwordLessThanSixChars" class="SignupTest" classname="SignupTest" file="/home/jordy/public_html/cbanking_web_client.git/application/tests/SignupTest.php" line="23" assertions="1" time="0.112853"/>
+    <testcase name="test_passwordMoreThanSixChars" class="SignupTest" classname="SignupTest" file="/home/jordy/public_html/cbanking_web_client.git/application/tests/SignupTest.php" line="28" assertions="1" time="0.009704"/>
+    <testcase name="test_passwordMoreThanSixCharsWithLettersAndNumbers" class="SignupTest" classname="SignupTest" file="/home/jordy/public_html/cbanking_web_client.git/application/tests/SignupTest.php" line="33" assertions="1" time="0.009793"/>
+    <testcase name="test_emptyName" class="SignupTest" classname="SignupTest" file="/home/jordy/public_html/cbanking_web_client.git/application/tests/SignupTest.php" line="38" assertions="1" time="0.010779"/>
+    <testcase name="test_nameWithNumber" class="SignupTest" classname="SignupTest" file="/home/jordy/public_html/cbanking_web_client.git/application/tests/SignupTest.php" line="43" assertions="1" time="0.010445"/>
+    <testcase name="test_nameEqualJordy" class="SignupTest" classname="SignupTest" file="/home/jordy/public_html/cbanking_web_client.git/application/tests/SignupTest.php" line="48" assertions="1" time="0.009624"/>
   </testsuite>
 </testsuites>

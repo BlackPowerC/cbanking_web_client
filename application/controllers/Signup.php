@@ -22,8 +22,6 @@ class Signup extends CI_Controller
     public function __construct()
     {
         parent::__construct() ;
-        $this->load->library(['session', 'form_validation']) ;
-        $this->load->helpers(['url', 'form']) ;
     }
 
     /**
@@ -31,6 +29,10 @@ class Signup extends CI_Controller
      */
     public function index()
     {
+        /* Chargement des helpers et library */
+        $this->load->library(['session', 'form_validation']) ;
+        $this->load->helpers(['url', 'form']) ;
+
         /* validation de formulaire */
         // Le nom
         $this->form_validation->set_rules("name", "nom réel",
@@ -67,7 +69,7 @@ class Signup extends CI_Controller
      */
     public function check_name(string $name): bool
     {
-        return preg_match("/^[a-zA-Z]$/", $name) ;
+        return preg_match("/^[a-zA-Z]+$/", $name) ;
     }
 
     /**
@@ -83,9 +85,10 @@ class Signup extends CI_Controller
         {
             return FALSE;
         }
-        foreach ($password as $char)
+        $char_array = str_split($password) ;
+        foreach ($char_array as $char)
         {
-            if(is_int($char))
+            if(is_int((int)$char))
             {
                 $num += 1 ;
             }
