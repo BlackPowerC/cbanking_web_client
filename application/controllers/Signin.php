@@ -24,11 +24,16 @@ class Signin extends CI_Controller
         parent::__construct() ;
         // autoloading
         $this->load->library(['session', 'form_validation']) ;
-        $this->load->helper(['url', 'form']) ;
+        $this->load->helper(['url', 'form', 'cookie']) ;
     }
 
     public function index()
     {
+        if($this->session->has_userdata('token') and $this->session->userdata('token') !== "")
+        {
+            // redirection vers la page personnelle
+            // exit() ;
+        }
         // règles de validations
         $this->form_validation->set_rules("e-mail", "Addresse électronique",
             ["trim", "strip_tags", "required"],
@@ -40,28 +45,20 @@ class Signin extends CI_Controller
 
         if($this->form_validation->run())
         {
-            if($this->session->has_userdata('token') and $this->session->userdata('token') !== "")
-            {
-                // redirection vers la page personnelle
-                exit() ;
-            }
-            else
-            {
                 /* envoie des données au serveur REST */
                 try
                 {
                     $ids = json_encode(['email'=>$this->input->post('e-mail'),
                         "passwd"=>$this->input->post('passwd')]);
-                    var_dump($ids) ;
                     $client = new Client() ;
                     $request = $client->post("http://localhost:8181/authentification", [], $ids);
                     $response = $request->send() ;
-                    echo '<div class="alert alert-info">';
-                    echo "request body from my REST API ".$response->getBody()."</br>" ;
-                    echo '</div>';
-                    echo '<div class="alert alert-info">';
-                    echo "request status from my REST API ".$response->getStatusCode()."</br>" ;
-                    echo '</div>';
+                    // cookies
+                    $this->session->set_userdata(['token'=>$response->json()['token']]) ;
+                    set_cookie('token', $response->json()['token'],'86400') ;
+                    // redirection vers la page personnelles
+                    redirect('home', 'location', 302) ;
+                    exit(0) ;
                 }catch(RequestException $exception)
                 {
                     echo $exception->getMessage().'</br>';
@@ -71,7 +68,6 @@ class Signin extends CI_Controller
                     die(-1) ;
                 }
             }
-        }
         $this->load->view("signin") ;
     }
 }
