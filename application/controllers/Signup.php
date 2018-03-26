@@ -32,7 +32,6 @@ class Signup extends CI_Controller
         /* Chargement des helpers et library */
         $this->load->library(['session', 'form_validation']) ;
         $this->load->helpers(['url', 'form']) ;
-
         /* validation de formulaire */
         // Le nom
         $this->form_validation->set_rules("name", "nom réel",
@@ -45,21 +44,47 @@ class Signup extends CI_Controller
             ['required'=>'L\' {field} est obligatoire']) ;
         // Le mot de passe
         $this->form_validation->set_rules("passwd", "mot de passe",
-            ['required', 'strip_tags', 'trim', 'callback_check_passwd'],
+            ['required', 'strip_tags', 'trim', 'callback_check_password'],
             ['required'=>'L\' {field} est obligatoire',
-                'check_passwd'=>'Le {field} doit contenir au moins 6 caractères avec des chiffres et des lettres']) ;
+                'check_password'=>'Le {field} doit contenir au moins 6 caractères avec des chiffres et des lettres']) ;
 
+        $status_code = 0;
+        var_dump($_SESSION) ;
         if($this->form_validation->run())
         {
             $ids = [
                'name'=>$this->input->post("name"),
-               'e-mail'=>$this->input->post("e-mail"),
+               'email'=>$this->input->post("e-mail"),
                'passwd'=>$this->input->post("passwd"),
                'type'=>$this->input->post("type")
             ] ;
-            var_dump(json_encode($ids)) ;
+            var_dump($ids) ;
+            $client = new Client() ;
+            $request = $client
+                ->post("http://localhost:8181/subscription/".$this->session->userdata('token'),
+                    [], json_encode($ids)) ;
+            try
+            {
+
+                $response = $request->send() ;
+                echo '<div class="alert alert-info">';
+                echo "request body from my REST API ".$response->getBody()."</br>" ;
+                echo '</div>';
+                echo '<div class="alert alert-info">';
+                echo "request status from my REST API ".$response->getStatusCode()."</br>" ;
+                echo '</div>';
+                $status_code = $response->getStatusCode() ;
+            }catch (RequestException $exception)
+            {
+                echo $exception->getMessage().'</br>';
+                ?>
+                <a href="signin">Réessayer</a>
+                <?php
+                die(-1) ;
+            }
         }
-        $this->load->view("signup") ;
+        $data['status_code'] = $status_code ;
+        $this->load->view("signup", $data) ;
     }
 
     /**

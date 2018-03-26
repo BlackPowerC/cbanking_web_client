@@ -19,6 +19,25 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
 <div class="main container container-fluid">
     <div class="row">
         <div id="main_content" class="col-lg-12 col-md-12 col-sm-12">
+            <div class="text-center">
+                <?php
+                switch ($status_code)
+                {
+                    case 200:
+                    ?>
+                    <span class="alert alert-success">Utilisateur inscris avec success !</span>
+                    <?php
+                        break;
+                    case 0:
+                        break;
+                    default:
+                    ?>
+                    <span class="alert alert-warning">Une erreur est survenue !</span>
+                    <?php
+                        break ;
+                }
+                ?>
+            </div>
             <div class="header text-center">
                 <h1>CBANKING WEB CLIENT</h1>
                 <span>Créer un compte d'employé !</span>
@@ -42,7 +61,7 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
                     <div style="width: 100%" class="form-group">
                         <label class="label" for="">Type d'utilisateur</label>
                         <select class="form-control" name="type">
-                            <option value="client">Client</option>
+                            <option value="customer">Client</option>
                             <option value="employee">Employé</option>
                         </select>
                     </div>
