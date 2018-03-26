@@ -19,6 +19,20 @@
     margin-top: 50px;
 }
 
+/* Contenu page */
+.main_content
+{
+    width: 65%;
+    margin: auto;
+    margin-top: 50px;
+}
+
+/* Contenu des panneaux latéraux */
+.side_content img
+{
+    margin-top : 70px;
+}
+
 .card
 {
     width: 100%;
