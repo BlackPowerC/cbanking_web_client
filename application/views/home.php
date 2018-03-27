@@ -47,10 +47,14 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
                 <li class="nav-item">
                     <a class="nav-link" data-toggle="tab" href="#subordinate-pan">Subordonnés</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#customer-pan">Clients</a>
+                </li>
             </ul>
             <div class="tab-content">
                 <?php include_once 'home_tab_info.inc.php' ?>
                 <?php include_once 'home_tab_subordinate.inc.php' ?>
+                <?php include_once 'home_tab_customer.inc.php' ?>
                 <?php include_once 'home_tab_mod.inc.php' ?>
             </div>
         </div>

@@ -32,7 +32,8 @@ class Signin extends CI_Controller
         if($this->session->has_userdata('token') and $this->session->userdata('token') !== "")
         {
             // redirection vers la page personnelle
-            // exit() ;
+            redirect("home", "location", 302) ;
+            exit() ;
         }
         // règles de validations
         $this->form_validation->set_rules("e-mail", "Addresse électronique",
@@ -54,12 +55,17 @@ class Signin extends CI_Controller
                     $request = $client->post("http://localhost:8181/authentification", [], $ids);
                     $response = $request->send() ;
                     // cookies
-                    $this->session->set_userdata(['token'=>$response->json()['token']]) ;
+                    $this->session->set_userdata([
+                            'token'=>$response->json()['token'],
+                            'email'=>$this->input->post('e-mail')
+                    ]) ;
                     set_cookie('token', $response->json()['token'],'86400') ;
+                    set_cookie('email', $this->input->post('e-mail'),'86400') ;
                     // redirection vers la page personnelles
                     redirect('home', 'location', 302) ;
                     exit(0) ;
-                }catch(RequestException $exception)
+                }
+                catch(RequestException $exception)
                 {
                     echo $exception->getMessage().'</br>';
                     ?>

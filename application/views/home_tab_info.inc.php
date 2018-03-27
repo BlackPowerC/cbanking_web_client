@@ -6,7 +6,7 @@
 -->
 <div id="info-pan" class="tab-pan fade in active">
     <ul>
-        <li></li>
+        <li>Email: <?php echo $this->session->userdata('email') ;?></li>
         <li></li>
     </ul>
 </div>

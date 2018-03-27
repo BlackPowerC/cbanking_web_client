@@ -3,7 +3,7 @@
     <!-- Links -->
     <ul class="navbar-nav">
         <li class="nav-item">
-            <a class="nav-link">Page personnelle</a>
+            <a class="nav-link" href="home">Page personnelle</a>
         </li>
         <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" data-toggle="dropdown">Gestion des comptes</a>

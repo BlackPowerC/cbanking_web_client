@@ -34,23 +34,24 @@ class Home extends CI_Controller
     /**
      * Cette fonction récupère depuis cbankin_rest_api à une URL, des données.
      * @param array $params Un tableau de paramettre à deux clé, url et token.
+     * @param string $method La méthode HTTP à utiliser.
      * @return array|bool|float|int|null|string
      */
-    public function getDataFromAPI(array $params = ['url'=>'localhost:8181', 'token'=>'23321425024549421161211921618911418213413092729622315176208194194234106118104173101211616736141415951461566075101219662762140166180182112771166623369121591147657224'])
+    public function getDataFromAPI(string $method='GET',array $params = ['url'=>'localhost:8181', 'token'=>'23321425024549421161211921618911418213413092729622315176208194194234106118104173101211616736141415951461566075101219662762140166180182112771166623369121591147657224'])
     {
         $request = null ;
         $response = null ;
         try
         {
             $client = new Client() ;
-            $request = $client->post($params['url'], [], json_encode(['token'=>$params['token']])) ;
+            $token['token'] = (array_key_exists('token', $params)) ? json_encode($params['token']):null ;
+            $request = $client->createRequest($method, $params['url'], [], $token) ;
             $response = $request->send() ;
             return $response->json() ;
         }
         catch(RequestException $re)
         {
             echo $re->getMessage().'<br/>' ;
-            echo $request->getBody().'<br/>' ;
         }
         return null ;
     }
@@ -61,12 +62,12 @@ class Home extends CI_Controller
         $this->load->library(['session', 'form_validation']) ;
         $this->load->helper(['url', 'form']) ;
 
-        $this->data['customers'] = $this->getDataFromAPI([
+        $this->data['customers'] = $this->getDataFromAPI('GET',[
             'url'=>'http://localhost:8181/customer/get/all',
             'token'=>$this->session->userdata('token')
         ]) ;
 
-        $this->data['subordinates'] = $this->getDataFromAPI([
+        $this->data['subordinates'] = $this->getDataFromAPI('POST',[
             'url'=>'http://localhost:8181/employee/subordinate/get/all',
             'token'=>$this->session->userdata('token')
         ]) ;
