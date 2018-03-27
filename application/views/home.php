@@ -39,41 +39,19 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
             </div>
             <ul class="nav nav-tabs">
                 <li class="active nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#info">Information Personnelles</a>
+                    <a class="nav-link" data-toggle="tab" href="#info-pan">Information Personnelles</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#mod">Modifier</a>
+                    <a class="nav-link" data-toggle="tab" href="#mod-pan">Modifier</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#subordinate-pan">Subordonnés</a>
                 </li>
             </ul>
             <div class="tab-content">
-                <div id="info" class="tab-pan fade in active">
-                    <ul>
-                        <li>Pseudo : jordy</li>
-                        <li>Email : fatigba72@gmail.com</li>
-                    </ul>
-                </div>
-                <div id="mod" class="tab-pan fade">
-                    <div class="card">
-                        <div class="card-body">
-                            <?php
-                            echo validation_errors('<div class="alert alert-warning">', '</div>') ;
-                            echo form_open("") ;
-                            ?>
-                            <fieldset>
-                                <!-- Pseudo -->
-                                <div class="form-group">
-                                    <input type="text" class="form-control" placeholder="Saisir pseudo" name="pseudo" required="" />
-                                </div>
-                                <!-- Email -->
-                                <div class="form-group">
-                                    <input type="e-mail" class="form-control" placeholder="Saisir adresse électonique" name="email" required="" />
-                                </div>
-                            </fieldset>
-                            <input style="width: 100%" id="btn-submit" class="btn btn-primary" type="submit" value="Envoyer" />
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <?php include_once 'home_tab_info.inc.php' ?>
+                <?php include_once 'home_tab_subordinate.inc.php' ?>
+                <?php include_once 'home_tab_mod.inc.php' ?>
             </div>
         </div>
     </div>
