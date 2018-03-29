@@ -13,16 +13,48 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
 <html lang="fr">
 <head>
     <meta charset="utf-8"/>
-    <title>Page personnelle</title>
+    <title>Client: <?php echo $customer['name'] ; ?></title>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../../vendor/twbs/bootstrap/dist/css/bootstrap.css" id="bootstrap3" />
-    <link rel="stylesheet" href="../../style/main.css" id="maincss" />
-    <script src="../../vendor/components/jquery/jquery.js"></script>
-    <script src="../../vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="../vendor/twbs/bootstrap/dist/css/bootstrap.css" id="bootstrap3" />
+    <link rel="stylesheet" href="../style/main.css" id="maincss" />
+    <script src="../vendor/components/jquery/jquery.js"></script>
+    <script src="../vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
 </head>
 <body>
+
 <!-- En-tete -->
-<?php include_once "navbar.inc.php" ?>
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+    <a class="navbar-brand" href="#">CBANKING WEB CLIENT</a>
+    <!-- Links -->
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="home">Page personnelle</a>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown">Gestion des comptes</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item">Ajouter</a>
+                <a class="dropdown-item">Modifier</a>
+            </div>
+        </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown">Opérations</a>
+            <div class="dropdown-menu">
+                <a class="dropdown-item">Ajouter</a>
+                <a class="dropdown-item">Modifier</a>
+            </div>
+        </li>
+    </ul>
+    <ul class="navbar-nav navbar-right">
+        <li class="nav-item">
+            <a class="nav-link" href="signin" title="Connexion">Connexion</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="signup" title="Inscription">Inscription</a>
+        </li>
+    </ul>
+
+</nav>
 
 <div id="page" class="container container-fluid">
     <!-- Entete avec nom de l'utilisateur et Photo de profil -->
@@ -39,23 +71,19 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
             </div>
             <ul class="nav nav-tabs">
                 <li class="active nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#info-pan">Information Personnelles</a>
+                    <a class="nav-link" data-toggle="tab" href="#info-pan">Ces comptes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#mod-pan">Modifier</a>
+                    <a class="nav-link" data-toggle="tab" href="#account-pan">Gestions des comptes</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#subordinate-pan">Subordonnés</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#customer-pan">Clients</a>
+                    <a class="nav-link" data-toggle="tab" href="#operation-pan">Gestion des operations<a>
                 </li>
             </ul>
             <div class="tab-content">
-                <?php include_once 'home_tab_info.inc.php' ?>
-                <?php include_once 'home_tab_subordinate.inc.php' ?>
-                <?php include_once 'home_tab_customer.inc.php' ?>
-                <?php include_once 'home_tab_mod.inc.php' ?>
+                <?php include_once 'banking_tab_info.inc.php' ?>
+                <?php include_once 'banking_tab_account.inc.php' ?>
+                <?php include_once 'banking_tab_operation.inc.php' ?>
             </div>
         </div>
     </div>
