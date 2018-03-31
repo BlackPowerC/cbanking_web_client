@@ -6,12 +6,6 @@
  * Time: 14:56
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
-defined('VENDOR') OR exit('No direct script access allowed');
-
-require_once VENDOR."autoload.php" ;
-
-use Guzzle\Http\Client ;
-use Guzzle\Http\Exception\RequestException ;
 
 /**
  * @Class Signin
@@ -24,7 +18,7 @@ class Signin extends CI_Controller
         parent::__construct() ;
         // autoloading
         $this->load->library(['session', 'form_validation']) ;
-        $this->load->helper(['url', 'form', 'cookie']) ;
+        $this->load->helper(['url', 'form', 'cookie', 'util']) ;
     }
 
     public function index()
@@ -33,7 +27,7 @@ class Signin extends CI_Controller
         {
             // redirection vers la page personnelle
             redirect("home", "location", 302) ;
-            exit() ;
+            exit(0) ;
         }
         // règles de validations
         $this->form_validation->set_rules("e-mail", "Addresse électronique",
@@ -46,34 +40,35 @@ class Signin extends CI_Controller
 
         if($this->form_validation->run())
         {
-                /* envoie des données au serveur REST */
-                try
+            $this->erro_msg = "" ;
+            try
+            {
+                $ids = ['email' => $this->input->post('e-mail'),
+                    "passwd" => $this->input->post('passwd')];
+                $response = post("http://localhost:8181", "/authentification", $ids);
+                if($response['status']  === 200)
                 {
-                    $ids = json_encode(['email'=>$this->input->post('e-mail'),
-                        "passwd"=>$this->input->post('passwd')]);
-                    $client = new Client() ;
-                    $request = $client->post("http://localhost:8181/authentification", [], $ids);
-                    $response = $request->send() ;
                     // cookies
                     $this->session->set_userdata([
-                            'token'=>$response->json()['token'],
-                            'email'=>$this->input->post('e-mail')
-                    ]) ;
-                    set_cookie('token', $response->json()['token'],'86400') ;
-                    set_cookie('email', $this->input->post('e-mail'),'86400') ;
+                        'token' => $response->json()['token'],
+                        'email' => $this->input->post('e-mail')
+                    ]);
+                    set_cookie('token', $response['json']['token'], '86400');
+                    set_cookie('email', $this->input->post('e-mail'), '86400');
                     // redirection vers la page personnelles
-                    redirect('home', 'location', 302) ;
-                    exit(0) ;
+                    redirect('home', 'location', 302);
+                    exit(0);
                 }
-                catch(RequestException $exception)
+                else
                 {
-                    echo $exception->getMessage().'</br>';
-                    ?>
-                    <a href="signin">Réessayer</a>
-                    <?php
-                    die(-1) ;
+                    echo $response['json'] ;
                 }
             }
-        $this->load->view("signin") ;
+            catch (Exception $exception)
+            {
+                $this->erro_msg = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
+            }
+        }
+        $this->load->view("signin", $this->erro_msg) ;
     }
 }
