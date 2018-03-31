@@ -6,12 +6,6 @@
  * Time: 17:24
  */
 defined('BASEPATH') OR exit('No direct script access allowed');
-defined('VENDOR') OR exit('No direct script access allowed');
-
-require_once VENDOR."autoload.php" ;
-
-use Guzzle\Http\Client ;
-use Guzzle\Http\Exception\RequestException ;
 
 /**
  * Class Signup.
@@ -22,6 +16,9 @@ class Signup extends CI_Controller
     public function __construct()
     {
         parent::__construct() ;
+        /* Chargement des helpers et library */
+        $this->load->library(['session', 'form_validation']) ;
+        $this->load->helpers(['url', 'form', 'util']) ;
     }
 
     /**
@@ -29,9 +26,14 @@ class Signup extends CI_Controller
      */
     public function index()
     {
-        /* Chargement des helpers et library */
-        $this->load->library(['session', 'form_validation']) ;
-        $this->load->helpers(['url', 'form']) ;
+        // En cas de non connexion
+        if(!$this->session->has_userdata('token') or $this->session->userdata('token') === "")
+        {
+            // redirection vers la page de connection
+            redirect("signin", "location", 302) ;
+            exit(0) ;
+        }
+
         /* validation de formulaire */
         // Le nom
         $this->form_validation->set_rules("name", "nom réel",

@@ -22,12 +22,10 @@
                 </li>
                 <li>
                     Nom:
-                    <form style="display: inline;" method="post" action="banking">
-                    <?php
-                    echo form_input(['name'=>'customer_id','value'=>$customer['id'],'hidden'=>'']) ;
-                    ?>
-                    <input class="btn btn-link" type="submit" value="<?php echo $customer['name']; ?>" />
-                    </form>
+                    <a href="banking&id_customer=<?php echo $customer['id'] ;?>" title="<?php echo $customer['name'] ;?>"
+                       class="btn-link">
+                        <?php echo $customer['name'] ;?>
+                    </a>
                 </li>
                 <li>Email: <?php echo $customer['email'] ;?></li>
             </ul>

@@ -29,6 +29,14 @@ class Home extends CI_Controller
 
     public function index()
     {
+        // En cas de non connexion
+        if(!$this->session->has_userdata('token') or $this->session->userdata('token') === "")
+        {
+            // redirection vers la page de connection
+            redirect("signin", "location", 302) ;
+            exit(0) ;
+        }
+
         $this->data['error_msg'] = '' ;
         try
         {
