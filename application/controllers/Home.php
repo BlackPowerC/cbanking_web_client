@@ -20,11 +20,16 @@ class Home extends CI_Controller
      * @array
      */
     private $data ;
+
     public function __construct()
     {
         parent::__construct() ;
         $this->load->library(['session', 'form_validation']) ;
         $this->load->helper(['url', 'form', 'util']) ;
+
+        // Le différentes variable de la vue
+        $this->data['customers'] = null ;
+        $this->data['subordinates'] = null ;
     }
 
     public function index()

@@ -19,6 +19,8 @@ class Signin extends CI_Controller
         // autoloading
         $this->load->library(['session', 'form_validation']) ;
         $this->load->helper(['url', 'form', 'cookie', 'util']) ;
+        // Variable pour les messages d'erreurs
+        $this->error_msg['error_msg'] = "" ;
     }
 
     public function index()
@@ -40,7 +42,6 @@ class Signin extends CI_Controller
 
         if($this->form_validation->run())
         {
-            $this->erro_msg = "" ;
             try
             {
                 $ids = ['email' => $this->input->post('e-mail'),
@@ -50,7 +51,7 @@ class Signin extends CI_Controller
                 {
                     // cookies
                     $this->session->set_userdata([
-                        'token' => $response->json()['token'],
+                        'token' => $response['json']['token'],
                         'email' => $this->input->post('e-mail')
                     ]);
                     set_cookie('token', $response['json']['token'], '86400');
@@ -66,9 +67,9 @@ class Signin extends CI_Controller
             }
             catch (Exception $exception)
             {
-                $this->erro_msg = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
+                $this->error_msg['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
             }
         }
-        $this->load->view("signin", $this->erro_msg) ;
+        $this->load->view("signin", $this->error_msg) ;
     }
 }

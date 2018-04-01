@@ -8,30 +8,38 @@
 <div id="customer-pan" class="tab-pane fade">
     <div class="card">
         <div class="card-body">
-        <?php
-        foreach ($customers as $customer)
-        {
-        ?>
-            <ul>
-                <li>
-                    Numero:
-                    <a href="#" title="<?php echo $customer['name'] ;?>"
-                       class="btn-link">
-                        <?php echo $customer['id'] ;?>
-                    </a>
-                </li>
-                <li>
-                    Nom:
-                    <a href="banking&id_customer=<?php echo $customer['id'] ;?>" title="<?php echo $customer['name'] ;?>"
-                       class="btn-link">
-                        <?php echo $customer['name'] ;?>
-                    </a>
-                </li>
-                <li>Email: <?php echo $customer['email'] ;?></li>
-            </ul>
-        <?php
-        }
-        ?>
+            <?php
+            if(!is_null($customers))
+            {
+                foreach ($customers['json'] as $customer)
+                {
+                ?>
+                <ul>
+                    <li>
+                        Numero:
+                        <a href="#" title="<?php echo $customer['name'] ;?>"
+                            class="btn-link">
+                            <?php echo $customer['id'] ;?>
+                        </a>
+                    </li>
+                    <li>
+                        Nom:
+                        <a href="banking?id_customer=<?php echo $customer['id'] ;?>" title="<?php echo $customer['name'] ;?>"
+                            class="btn-link">
+                            <?php echo $customer['name'] ;?>
+                        </a>
+                    </li>
+                    <li>Email: <?php echo $customer['email'] ;?></li>
+                </ul>
+                <?php
+                }
+            }
+            else
+            {?>
+                <div class="alert alert-info">Aucun client n'est inscrit dans la banque !</div>
+            <?php
+            }
+            ?>
         </div>
     </div>
 </div>

@@ -9,16 +9,24 @@
     <div class="card">
         <div class="card-body">
         <?php
-        foreach ($subordinates as $subordinate)
-        {
-        ?>
-            <ul>
-                <li>Numero: <?php echo $subordinate['id'] ;?></li>
-                <li>Nom: <?php echo $subordinate['name'] ;?></li>
-                <li>Email: <?php echo $subordinate['email'] ;?></li>
-            </ul>
-        <?php
-        }
+            if(!is_null($subordinates['json']) and count($subordinates['json']) > 0)
+            {
+                foreach ($subordinates['json'] as $subordinate)
+                {
+                ?>
+                    <ul>
+                        <li>Numero: <?php echo $subordinate['id'] ;?></li>
+                        <li>Nom: <?php echo $subordinate['name'] ;?></li>
+                        <li>Email: <?php echo $subordinate['email'] ;?></li>
+                    </ul>
+                <?php
+                }
+            }
+            else
+            {?>
+                <div class="alert alert-info">Vous n'avez aucun subordonné !</div>
+            <?php
+            }
         ?>
         </div>
     </div>
