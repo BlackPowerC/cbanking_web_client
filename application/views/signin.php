@@ -24,7 +24,7 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
             <div id="main_content" class="col-lg-12 col-md-12 col-sm-12">
                 <div class="header text-center">
                     <h1>CBANKING WEB CLIENT</h1>
-                    <span class="alert alert-info">Connectez-vous à votre compte !</span>
+                    <span>Connectez-vous à votre compte !</span>
                 </div>
                 <div class="card">
                     <img id="avatar" width="80" height="80" class="card-img-top" src="../vendor/img/avatar-login.png" title="avatar" alt="avatar"/>

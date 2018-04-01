@@ -6,7 +6,7 @@
  * Time: 22:37
  */
 ?>
-<div id="operation-tab" class="tab-pan fade">
+<div id="operation-pan" class="tab-pan fade">
     <div class="card">
         <div class="card-body">
             <?php
