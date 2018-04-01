@@ -29,13 +29,12 @@ class Banking extends CI_Controller
      */
     public function create()
     {
-
         $balance = floatval($this->input->post('balance')) ;
         $extra = floatval($this->input->post('extra')) ;
         $id_customer = (int) $this->input->post('id_customer') ;
         $account_type = ((int) ($this->input->post('type'))) ? 'savings account': 'current account' ;
         $post = [
-            'id_customer'=>$id_customer, // id du client
+            'customer'=>$id_customer, // id du client
             'creationDate'=> date("d-m-Y H:i:s"), // date de création
             'balance'=>$balance, // montant initiale
             'type'=>$account_type, // type de compte
@@ -44,7 +43,6 @@ class Banking extends CI_Controller
         ] ;
 
         // Règle de validation
-        $this->form_validation->set_rules("type", "", ['required', 'trim', 'strip_tags']) ;
         $this->form_validation->set_rules("balance", "montant initiale",
             ['required', 'trim', 'strip_tags', 'greater_than[100]'],
             ['greater_than'=> "Le {field} doit être supérieur à 100",
@@ -58,7 +56,20 @@ class Banking extends CI_Controller
         {
             $this->load->view("banking/error") ;
         }
-        var_dump(json_encode($post)) ;
+        else
+        {
+            try
+            {
+                $response = post("http://localhost:8181", "/account/add/", $post) ;
+            }catch (Exception $exception)
+            {
+                echo $exception->getMessage().'<br/>' ;
+                echo '<a href="http://[::1]/~jordy/cbanking_web_client.git/index.php/banking?id_customer='.$this->input->post('id_customer').'" title="banking">Réessayer !</a>' ;
+                die(-1) ;
+            }
+            redirect("banking?id_customer={$this->input->post('id_customer')}", "location", 302) ;
+            exit(0) ;
+        }
     }
 
     public function index()
