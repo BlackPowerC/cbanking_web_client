@@ -13,6 +13,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
  */
 class Signup extends CI_Controller
 {
+    /**
+     * Tableau contenant les variables à afficher dans la vue
+     * @var array
+     */
+    protected $data ;
+
     public function __construct()
     {
         parent::__construct() ;
@@ -34,10 +40,13 @@ class Signup extends CI_Controller
             exit(0) ;
         }
 
+        $this->data['status_code'] = 0 ;
+        $this->data['error_msg'] = '' ;
+
         /* validation de formulaire */
         // Le nom
         $this->form_validation->set_rules("name", "nom réel",
-            ['required', 'strip_tags', 'trim', 'callback_check_name'],
+            ['required', 'strip_tags', 'trim', 'alpha'],
             ['required'=>'Le {field} est obligatoire',
              'check_name'=>'Le {field} ne peut contenir que des caractères alphabétiques']) ;
         // L'email
@@ -46,84 +55,31 @@ class Signup extends CI_Controller
             ['required'=>'L\' {field} est obligatoire']) ;
         // Le mot de passe
         $this->form_validation->set_rules("passwd", "mot de passe",
-            ['required', 'strip_tags', 'trim', 'callback_check_password'],
+            ['required', 'strip_tags', 'trim', 'check_password'],
             ['required'=>'L\' {field} est obligatoire',
                 'check_password'=>'Le {field} doit contenir au moins 6 caractères avec des chiffres et des lettres']) ;
 
-        $status_code = 0;
-        var_dump($_SESSION) ;
         if($this->form_validation->run())
         {
-            $ids = [
-               'name'=>$this->input->post("name"),
-               'email'=>$this->input->post("e-mail"),
-               'passwd'=>$this->input->post("passwd"),
-               'type'=>$this->input->post("type")
-            ] ;
-            var_dump($ids) ;
-            $client = new Client() ;
-            $request = $client
-                ->post("http://localhost:8181/subscription/".$this->session->userdata('token'),
-                    [], json_encode($ids)) ;
             try
             {
+                $ids = [
+                    'name'=>$this->input->post("name"),
+                    'email'=>$this->input->post("e-mail"),
+                    'passwd'=>$this->input->post("passwd"),
+                    'type'=>$this->input->post("type")
+                ] ;
 
-                $response = $request->send() ;
-                echo '<div class="alert alert-info">';
-                echo "request body from my REST API ".$response->getBody()."</br>" ;
-                echo '</div>';
-                echo '<div class="alert alert-info">';
-                echo "request status from my REST API ".$response->getStatusCode()."</br>" ;
-                echo '</div>';
-                $status_code = $response->getStatusCode() ;
-            }catch (RequestException $exception)
+                $response = post("http://localhost:8181",
+                    "/subscription/{$this->session->userdata('token')}",
+                    $ids) ;
+                $this->data['status_code'] = $response['status'] ;
+            }catch (Exception $exception)
             {
-                echo $exception->getMessage().'</br>';
-                ?>
-                <a href="signin">Réessayer</a>
-                <?php
-                die(-1) ;
+                $this->data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
             }
         }
-        $data['status_code'] = $status_code ;
-        $this->load->view("signup", $data) ;
-    }
 
-    /**
-     * Cette fonction vérifie si un nom contient des caractères illégaux.
-     * @param string $name
-     * @return bool
-     */
-    public function check_name(string $name): bool
-    {
-        return preg_match("/^[a-zA-Z]+$/", $name) ;
-    }
-
-    /**
-     * Cette fonction vérifie la robustesse des mot de passe.
-     * @param string $password
-     * @return bool.²
-     */
-    public function check_password(string $password): bool
-    {
-        $num = 0;
-        $char = 0;
-        if(strlen($password) < 6)
-        {
-            return FALSE;
-        }
-        $char_array = str_split($password) ;
-        foreach ($char_array as $char)
-        {
-            if(is_int((int)$char))
-            {
-                $num += 1 ;
-            }
-            else
-            {
-                $char += 1 ;
-            }
-        }
-        return ($num > 0 && $char > 0) ;
+        $this->load->view("signup", $this->data) ;
     }
 }

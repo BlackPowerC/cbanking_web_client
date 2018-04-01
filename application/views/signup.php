@@ -17,27 +17,26 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
 <body>
 <?php include_once "navbar.inc.php" ?>
 <div class="main container container-fluid">
+    <!-- message d'erreur -->
+    <?php include_once "client_error.php" ?>
+
     <div class="row">
-        <div id="main_content" class="col-lg-12 col-md-12 col-sm-12">
+        <div class="col-lg-12 col-md-12 col-sm-12">
             <div class="text-center">
                 <?php
-                switch ($status_code)
+                if($status_code == 200)
                 {
-                    case 200:
-                    ?>
+                ?>
                     <span class="alert alert-success">Utilisateur inscris avec success !</span>
-                    <?php
-                        break;
-                    case 0:
-                        break;
-                    default:
-                    ?>
-                    <span class="alert alert-warning">Une erreur est survenue !</span>
-                    <?php
-                        break ;
+                <?php
                 }
                 ?>
             </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div id="main_content" class="col-lg-12 col-md-12 col-sm-12">
             <div class="header text-center">
                 <h1>CBANKING WEB CLIENT</h1>
                 <span>Créer un compte d'employé !</span>
