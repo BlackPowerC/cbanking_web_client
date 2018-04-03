@@ -55,7 +55,7 @@ class Home extends CI_Controller
         {
             $this->data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
         }
-
+        
         // Récupération des infos depuis l'API Rest
         $this->load->view("home", $this->data) ;
     }
