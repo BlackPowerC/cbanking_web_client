@@ -6,10 +6,15 @@
 -->
 
 <div id="customer-pan" class="tab-pane fade">
+    <form>
+        <div class="form-group">
+            <input id="search-form" type="text" class="form-control" name="search" placeholder="rechercher" />
+        </div>
+    </form>
     <div class="card">
         <div class="card-body">
             <?php
-            if(!is_null($customers))
+            if(!is_null($customers['json']))
             {
                 foreach ($customers['json'] as $customer)
                 {

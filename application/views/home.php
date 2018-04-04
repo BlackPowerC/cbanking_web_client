@@ -32,33 +32,24 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
     <div class="row">
         <!-- Colonne pour la pp -->
         <div class="side_content col-lg-4 col-md-4 col-xs-4">
-            <img width="200" height="200" class="img-thumbnail" src="../vendor/img/avatar-login.png" title="avatar" alt="avatar"/>
+            <div class="card" style="border: dashed 0px; width: 80%">
+                <img class="card-img-top img-thumbnail" src="../vendor/img/avatar-login.png" title="avatar" alt="avatar">
+                <div class="card-body">
+                    <h4 class="card-title" style="margin-top: 5px;">John Doe</h4>
+                    <a href="#" class="btn btn-primary">Voir le profil</a>
+                </div>
+            </div>
         </div>
 
         <div class="main_content col-lg-8 col-md-8 col-xs-8">
-            <div class="well">
-                <span></span>
-                <span style="float: right"></span>
-            </div>
             <ul class="nav nav-tabs">
-                <li class="active nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#info-pan">Information Personnelles</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#mod-pan">Modifier</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" data-toggle="tab" href="#subordinate-pan">Subordonnés</a>
-                </li>
-                <li class="nav-item">
+                <li class="nav-item active">
                     <a class="nav-link" data-toggle="tab" href="#customer-pan">Clients</a>
                 </li>
             </ul>
+
             <div class="tab-content">
-                <?php include_once 'home_tab_info.inc.php' ?>
-                <?php include_once 'home_tab_subordinate.inc.php' ?>
                 <?php include_once 'home_tab_customer.inc.php' ?>
-                <?php include_once 'home_tab_mod.inc.php' ?>
             </div>
         </div>
     </div>

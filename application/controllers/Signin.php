@@ -52,10 +52,14 @@ class Signin extends CI_Controller
                     // cookies
                     $this->session->set_userdata([
                         'token' => $response['json']['token'],
-                        'email' => $this->input->post('e-mail')
+                        'email' => $this->input->post('e-mail'),
+//                        'name' => $response['json']['name'],
+                        'last' => date("d-m-Y H:i:s")
                     ]);
                     set_cookie('token', $response['json']['token'], '86400');
+//                    set_cookie('name', $response['json']['name'], '86400');
                     set_cookie('email', $this->input->post('e-mail'), '86400');
+                    set_cookie('last', date("d-m-Y H:i:s"), '86400');
                     // redirection vers la page personnelles
                     redirect('home', 'location', 302);
                     exit(0);

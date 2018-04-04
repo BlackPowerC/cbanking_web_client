@@ -1,32 +1,15 @@
-<nav class="navbar navbar-toggleable-md navbar-inverse bg-inverse">
+<nav class="navbar navbar-toggleable-md navbar-inverse bg-info">
     <a class="navbar-brand" href="#">CBANKING WEB CLIENT</a>
     <!-- Links -->
-    <ul class="navbar-nav">
-        <li class="nav-item">
-            <a class="nav-link" href="home">Page personnelle</a>
-        </li>
+    <ul class="nav navbar-nav navbar-left">
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown">Gestion des comptes</a>
+            <button style="border-radius: 0%;" class="dropdown-toggle btn btn-primary" data-toggle="dropdown">Bienvenue</button>
             <div class="dropdown-menu">
-                <a class="dropdown-item">Ajouter</a>
-                <a class="dropdown-item">Modifier</a>
-            </div>
-        </li>
-        <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-toggle="dropdown">Opérations</a>
-            <div class="dropdown-menu">
-                <a class="dropdown-item">Ajouter</a>
-                <a class="dropdown-item">Modifier</a>
+                <a class="dropdown-item" href="home">Profil</a>
+                <a class="dropdown-item" href="signin" title="Connexion">Connexion</a>
+                <a class="dropdown-item" href="signup" title="Inscription">Inscription</a>
+                <a class="dropdown-item" href="signin/logout" title="Déconnexion">Déconnexion</a>
             </div>
         </li>
     </ul>
-    <ul class="navbar-nav navbar-right">
-        <li class="nav-item">
-            <a class="nav-link" href="signin" title="Connexion">Connexion</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="signup" title="Inscription">Inscription</a>
-        </li>
-    </ul>
-
 </nav>

@@ -15,7 +15,6 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
 </head>
 
 <body>
-    <?php include_once "navbar.inc.php" ?>
     <div class="main container container-fluid">
         <!-- Affichage des méssage d'erreur -->
         <?php include_once "client_error.php" ?>
