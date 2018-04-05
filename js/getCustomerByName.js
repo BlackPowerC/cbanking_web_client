@@ -6,6 +6,20 @@
  * commencant par un mot clé.
  **/
 
+var cleanDOM = function () {
+
+}
+
+var on404 = function () {
+
+
+}
+
+var on200 = function (customer_json) {
+
+
+}
+
 var request = new XMLHttpRequest() ;
 request.onreadystatechange = function () {
 

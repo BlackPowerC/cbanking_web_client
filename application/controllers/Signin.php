@@ -23,6 +23,20 @@ class Signin extends CI_Controller
         $this->error_msg['error_msg'] = "" ;
     }
 
+    /**
+     * Cette fonction déconnecte l'employé de sa session.
+     */
+    public function logout()
+    {
+        $this->session->unset_userdata("email") ;
+        $this->session->unset_userdata("last") ;
+        $this->session->unset_userdata("token") ;
+//        $this->session->unset_userdata("name") ;
+        session_destroy() ;
+
+        redirect("signin", "Location", 302) ;
+    }
+
     public function index()
     {
         if($this->session->has_userdata('token') and $this->session->userdata('token') !== "")

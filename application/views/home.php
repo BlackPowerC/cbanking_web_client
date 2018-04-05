@@ -44,7 +44,7 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
         <div class="main_content col-lg-8 col-md-8 col-xs-8">
             <ul class="nav nav-tabs">
                 <li class="nav-item active">
-                    <a class="nav-link" data-toggle="tab" href="#customer-pan">Clients</a>
+                    <a class="nav-link" data-toggle="tab" href="#customer-pan">Liste des clients</a>
                 </li>
             </ul>
 

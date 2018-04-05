@@ -85,5 +85,7 @@ defined('EXIT__AUTO_MIN')      OR define('EXIT__AUTO_MIN', 9); // lowest automat
 defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest automatically-assigned error code
 
 // Mes constantes
-// Le repertoire de base
-defined('VENDOR') or define('VENDOR', substr(BASEPATH,0, strlen(BASEPATH)-7).'vendor/') ;
+// Le repertoire de base de vendor
+defined('VENDOR') or define('VENDOR', substr(BASEPATH,0, strlen(BASEPATH)-7).'vendor'.DIRECTORY_SEPARATOR) ;
+// Le repertoire public, contenant les ressources de l'application (css, js et image)
+defined('PUBLIC') or define('PUBLIC', APPPATH.'public'.DIRECTORY_SEPARATOR) ;
