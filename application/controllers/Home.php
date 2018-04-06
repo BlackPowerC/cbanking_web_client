@@ -24,7 +24,7 @@ class Home extends CI_Controller
     public function __construct()
     {
         parent::__construct() ;
-        $this->load->library(['session', 'form_validation']) ;
+        $this->load->library(['session', 'form_validation', 'HTML']) ;
         $this->load->helper(['url', 'form', 'util']) ;
 
         // Le différentes variable de la vue
@@ -58,5 +58,23 @@ class Home extends CI_Controller
         
         // Récupération des infos depuis l'API Rest
         $this->load->view("home", $this->data) ;
+    }
+
+    /**
+     * Affiche la page personel de l'employé
+     */
+    public function profile()
+    {
+        // En cas de non connexion
+        if(!$this->session->has_userdata('token') or $this->session->userdata('token') === "")
+        {
+            // redirection vers la page de connection
+            redirect("signin", "location", 302) ;
+            exit(0) ;
+        }
+        $data['name'] = $this->session->userdata('name') ;
+        $data['surname'] = $this->session->userdata('surname') ;
+        $data['email'] = $this->session->userdata('email') ;
+        $this->load->view("ace/employee_profile", $data) ;
     }
 }

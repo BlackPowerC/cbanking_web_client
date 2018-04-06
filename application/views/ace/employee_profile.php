@@ -43,7 +43,7 @@
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
 
-                    <li class="active">User Profile</li>
+                    <li class="active">Profil d'utilisateur</li>
                 </ul><!-- /.breadcrumb -->
 
                 <div class="nav-search" id="nav-search">
@@ -66,9 +66,9 @@
                             <div id="user-profile-1" class="user-profile row">
                                 <div class="col-xs-12 col-sm-3 center">
                                     <div>
-												<span class="profile-picture">
-													<img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="assets/images/avatars/profile-pic.jpg" />
-												</span>
+                                        <span class="profile-picture">
+										    <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="assets/images/avatars/profile-pic.jpg" />
+                                        </span>
 
                                         <div class="space-4"></div>
 
@@ -77,36 +77,8 @@
                                                 <a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
                                                     <i class="ace-icon fa fa-circle light-green"></i>
                                                     &nbsp;
-                                                    <span class="white">Alex M. Doe</span>
+                                                    <span class="white"><?php echo $name; ?></span>
                                                 </a>
-
-                                                <ul class="align-left dropdown-menu dropdown-caret dropdown-lighter">
-                                                    <li class="dropdown-header"> Change Status </li>
-
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="ace-icon fa fa-circle green"></i>
-                                                            &nbsp;
-                                                            <span class="green">Available</span>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="ace-icon fa fa-circle red"></i>
-                                                            &nbsp;
-                                                            <span class="red">Busy</span>
-                                                        </a>
-                                                    </li>
-
-                                                    <li>
-                                                        <a href="#">
-                                                            <i class="ace-icon fa fa-circle grey"></i>
-                                                            &nbsp;
-                                                            <span class="grey">Invisible</span>
-                                                        </a>
-                                                    </li>
-                                                </ul>
                                             </div>
                                         </div>
                                     </div>
@@ -122,115 +94,26 @@
                                             <div class="profile-info-name"> Nom </div>
 
                                             <div class="profile-info-value">
-                                                <span class="editable" id="username">Fatigba</span>
+                                                <span class="editable" id="username"><?php echo $name; ?></span>
                                             </div>
                                         </div>
                                         <div class="profile-info-row">
                                             <div class="profile-info-name"> Prénom </div>
 
                                             <div class="profile-info-value">
-                                                <span class="editable" id="username">Jordy</span>
+                                                <span class="editable" id="username"><?php echo $surname; ?></span>
                                             </div>
                                         </div>
                                         <div class="profile-info-row">
                                             <div class="profile-info-name"> Email </div>
 
                                             <div class="profile-info-value">
-                                                <span class="editable" id="username">Jordy@toto.com</span>
+                                                <span class="editable" id="username"><?php echo $email; ?></span>
                                             </div>
                                         </div>
-                                        <div class="profile-info-row">
-                                            <div class="profile-info-name"> Comptes </div>
-
-                                            <div class="profile-info-value">
-                                                <span class="editable" id="username">LIens vers la liste des comptes</span>
-                                            </div>
-                                        </div>
-
-
                                     </div>
 
                                     <div class="space-20"></div>
-
-                                    <div class="widget-box transparent">
-                                        <div class="widget-header widget-header-small">
-                                            <h4 class="widget-title blue smaller">
-                                                <i class="ace-icon fa fa-rss orange"></i>
-                                                Listes des comptes
-                                            </h4>
-                                        </div>
-
-                                        <dir>
-
-                                            <table class="table table-stripped">
-                                                <thead>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>Numero</td>
-                                                    <td>Date de création</td>
-                                                    <td>Solde</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>5</td>
-                                                    <td>14-04-2017 15:45:32</td>
-                                                    <td>21006 CFA</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>5</td>
-                                                    <td>14-04-2017 15:45:32</td>
-                                                    <td>21006 CFA</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>5</td>
-                                                    <td>14-04-2017 15:45:32</td>
-                                                    <td>21006 CFA</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>5</td>
-                                                    <td>14-04-2017 15:45:32</td>
-                                                    <td>21006 CFA</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>5</td>
-                                                    <td>14-04-2017 15:45:32</td>
-                                                    <td>21006 CFA</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>5</td>
-                                                    <td>14-04-2017 15:45:32</td>
-                                                    <td>21006 CFA</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>5</td>
-                                                    <td>14-04-2017 15:45:32</td>
-                                                    <td>21006 CFA</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                                </tbody>
-                                            </table>
-                                        </dir>
-
-                                        <div class="hr hr2 hr-double"></div>
-
-                                        <div class="space-6"></div>
-
-                                    </div>
                                 </div>
                             </div>
                             <!-- PAGE CONTENT ENDS -->
@@ -244,8 +127,8 @@
             <div class="footer-inner">
                 <div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">Ace</span>
-							Application &copy; 2013-2014
+							<span class="blue bolder">CBANKING WEB CLIENT</span>
+							Application &copy; 2018
 						</span>
 
                     &nbsp; &nbsp;

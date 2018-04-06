@@ -29,9 +29,9 @@ class Signin extends CI_Controller
     public function logout()
     {
         $this->session->unset_userdata("email") ;
-        $this->session->unset_userdata("last") ;
         $this->session->unset_userdata("token") ;
-//        $this->session->unset_userdata("name") ;
+        $this->session->unset_userdata("name") ;
+        $this->session->unset_userdata("surname") ;
         session_destroy() ;
 
         redirect("signin", "Location", 302) ;
@@ -42,7 +42,7 @@ class Signin extends CI_Controller
         if($this->session->has_userdata('token') and $this->session->userdata('token') !== "")
         {
             // redirection vers la page personnelle
-            redirect("home", "location", 302) ;
+            redirect("home/profile", "location", 302) ;
             exit(0) ;
         }
         // règles de validations
@@ -66,16 +66,16 @@ class Signin extends CI_Controller
                     // cookies
                     $this->session->set_userdata([
                         'token' => $response['json']['token'],
-                        'email' => $this->input->post('e-mail'),
-//                        'name' => $response['json']['name'],
-                        'last' => date("d-m-Y H:i:s")
+                        'surname' => $response['json']['surname'],
+                        'name' => $response['json']['name'],
+                        'email' => $this->input->post('e-mail')
                     ]);
                     set_cookie('token', $response['json']['token'], '86400');
-//                    set_cookie('name', $response['json']['name'], '86400');
+                    set_cookie('name', $response['json']['name'], '86400');
+                    set_cookie('surname', $response['json']['surname'], '86400');
                     set_cookie('email', $this->input->post('e-mail'), '86400');
-                    set_cookie('last', date("d-m-Y H:i:s"), '86400');
                     // redirection vers la page personnelles
-                    redirect('home', 'location', 302);
+                    redirect('home/profile', 'location', 302);
                     exit(0);
                 }
                 else
