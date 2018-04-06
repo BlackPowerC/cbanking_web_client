@@ -103,3 +103,29 @@ function check_password(string $password): bool
     }
     return ($num > 0 && $char > 0) ;
 }
+
+/**
+ * Cette fonction test la validadité de la session php de l'employé.
+ * @param $session Le session php.
+ * @return bool True si la session est conforme.
+ */
+function check_session($session): bool
+{
+    if(!$session->userdata('name') || $session->userdata('name') === "")
+    {
+        return false ;
+    }
+    if(!$session->userdata('surname') || $session->userdata('surname') === "")
+    {
+        return false ;
+    }
+    if(!$session->userdata('token') || $session->userdata('token') === "")
+    {
+        return false ;
+    }
+    if(!$session->userdata('email') || $session->userdata('email') === "")
+    {
+        return false ;
+    }
+    return true ;
+}
