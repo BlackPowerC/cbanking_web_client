@@ -70,31 +70,10 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
-
                         <div>
-                            <div id="user-profile-1" class="user-profile row">
-                                <div class="col-xs-12 col-sm-3 center">
-                                    <div>
-                                        <span class="profile-picture">
-                                            <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="assets/images/avatars/profile-pic.jpg" />
-                                        </span>
+                            <div id="user-profile-1" class="row">
 
-                                        <div class="space-4"></div>
-
-                                        <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">
-                                            <div class="inline position-relative">
-                                                <a href="#" class="user-title-label dropdown-toggle" data-toggle="dropdown">
-                                                    <i class="ace-icon fa fa-circle light-green"></i>
-                                                    &nbsp;
-                                                    <span class="white"><?php echo $this->session->userdata("name") ;?></span>
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                </div>
-
-                                <div class="col-xs-12 col-sm-9">
+                                <div class="col-xs-12 col-sm-9" style="width: 100%; margin: auto;">
 
                                     <div class="space-20"></div>
 
@@ -105,71 +84,54 @@
                                                 Listes des Clients
                                             </h4>
                                         </div>
-
-                                        <dir>
-
+                                        <?php
+                                        if($customers['json'] != NULL)
+                                        {
+                                            ?>
                                             <table class="table table-stripped">
                                                 <thead>
                                                 <tr>
                                                     <td>Détails</td>
-                                                    <td>Numero</td>
-                                                    <td>Date de création</td>
-                                                    <td>Solde</td>
+                                                    <td>Nom</td>
+                                                    <td>Prénom</td>
+                                                    <td>Email</td>
                                                     <td>Action</td>
                                                 </tr>
                                                 </thead>
                                                 <tbody>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>5</td>
-                                                    <td>14-04-2017 15:45:32</td>
-                                                    <td>21006 CFA</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>5</td>
-                                                    <td>14-04-2017 15:45:32</td>
-                                                    <td>21006 CFA</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>5</td>
-                                                    <td>14-04-2017 15:45:32</td>
-                                                    <td>21006 CFA</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>5</td>
-                                                    <td>14-04-2017 15:45:32</td>
-                                                    <td>21006 CFA</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>5</td>
-                                                    <td>14-04-2017 15:45:32</td>
-                                                    <td>21006 CFA</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>5</td>
-                                                    <td>14-04-2017 15:45:32</td>
-                                                    <td>21006 CFA</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>5</td>
-                                                    <td>14-04-2017 15:45:32</td>
-                                                    <td>21006 CFA</td>
-                                                    <td>Action</td>
-                                                </tr>
+                                                <?php
+                                                foreach($customers['json'] as $customer)
+                                                {?>
+                                                    <tr>
+                                                        <td>
+                                                            <a title="Détails du client" href="<?php echo "customer/{$customer['id']}" ?>">
+                                                                <i class="fa fa-eye fa-2x"></i>
+                                                            </a>
+                                                        </td>
+                                                        <td><?php echo $customer['name']; ?></td>
+                                                        <td><?php echo $customer['surname']; ?></td>
+                                                        <td><?php echo $customer['email']; ?></td>
+                                                        <td>
+                                                            <a title="Créer un compte" href="<?php echo "../banking/create/{$customer['id']}" ?>">
+                                                                <i class="fa fa-plus fa-2x"></i>
+                                                            </a>
+                                                        </td>
+                                                    </tr>
+                                                    <?php
+                                                }
+                                                ?>
                                                 </tbody>
                                             </table>
+                                            <?php
+                                        }
+                                        else
+                                        {?>
+                                            <div class="alert alert-info">
+                                                Aucun client n'est inscrit dans la banque.
+                                            </div>
+                                            <?php
+                                        }
+                                        ?>
                                         </dir>
 
                                         <div class="hr hr2 hr-double"></div>

@@ -12,6 +12,8 @@ class Management extends CI_Controller
     public function __construct()
     {
         parent::__construct() ;
+        $this->load->library(['HTML', 'session']) ;
+        $this->load->helper(['util', 'url']) ;
     }
 
     /**
@@ -36,7 +38,21 @@ class Management extends CI_Controller
      */
     public function customers()
     {
-
+        if(!check_session($this->session))
+        {
+            redirect("signin", "location", 302) ;
+            exit(0) ;
+        }
+        $data['error_msg'] = "" ;
+        $data['customers'] = null ;
+        try
+        {
+            $data['customers'] = get("http://localhost:8181", '/customer/get/all') ;
+        }catch (Exception $exception)
+        {
+            $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
+        }
+        $this->load->view('ace/management/customers', $data) ;
     }
 
     /**
