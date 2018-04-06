@@ -89,3 +89,5 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 defined('VENDOR') or define('VENDOR', substr(BASEPATH,0, strlen(BASEPATH)-7).'vendor'.DIRECTORY_SEPARATOR) ;
 // Le repertoire public, contenant les ressources de l'application (css, js et image)
 defined('PUBLIC') or define('PUBLIC', APPPATH.'public'.DIRECTORY_SEPARATOR) ;
+// L'url de la base du site
+defined('BASE_URL') or define('BASE_URL', 'http://127.0.0.1/~jordy/cbanking_web_client.git/') ;
