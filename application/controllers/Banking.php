@@ -141,4 +141,21 @@ class Banking extends CI_Controller
         $this->load->view("banking/banking", $this->data) ;
     }
 
+    /**
+     * Affiche la page de la liste de tout les comptes.
+     */
+    public function accounts()
+    {
+
+    }
+
+    /**
+     * Affiche la page détaillé d'un compte bancaire.
+     * @param $id L'identifiant du compte.
+     */
+    public function account($id)
+    {
+
+    }
+
 }
