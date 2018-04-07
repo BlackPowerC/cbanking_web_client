@@ -26,7 +26,7 @@ class Banking extends CI_Controller
     /**
      * Cette fonction affiche le formualaire de création de compte
      * pour un client.
-     * @param $id_customer L'identifiant du client.
+     * @param $id_customer int L'identifiant du client.
      */
     public function create(int $id_customer)
     {
@@ -159,7 +159,24 @@ class Banking extends CI_Controller
      */
     public function accounts()
     {
+        // En cas de non connexion
+        if(!check_session($this->session))
+        {
+            redirect("signin", "location", 302) ;
+            exit(0) ;
+        }
+        $data['error_msg'] = "" ;
+        $data['name'] = $this->session->userdata('name') ;
+        $data['accounts'] = NULL ;
+        try
+        {
+            $data['accounts'] = get("http://localhost:8181/", "/account/get/all/{$this->session->userdata("token")}") ;
+        }catch (Exception $exception)
+        {
+            $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>' ;
+        }
 
+        $this->load->view("ace/banking/accounts", $data) ;
     }
 
     /**
