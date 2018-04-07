@@ -44,6 +44,7 @@ class Management extends CI_Controller
             exit(0) ;
         }
         $data['error_msg'] = "" ;
+        $data['name'] = $this->session->userdata("name") ;
         $data['customers'] = null ;
         try
         {

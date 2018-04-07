@@ -19,19 +19,26 @@ class Banking extends CI_Controller
     {
         parent::__construct() ;
         // chargement des bibliotheques et des helpers
-        $this->load->library(['session', 'form_validation']) ;
+        $this->load->library(['session', 'form_validation', 'HTML']) ;
         $this->load->helper(['url', 'form', 'util']) ;
     }
 
     /**
-     * Cette fonction traites les données venant du
-     * formulaire de création de compte.
+     * Cette fonction affiche le formualaire de création de compte
+     * pour un client.
+     * @param $id_customer L'identifiant du client.
      */
-    public function create()
+    public function create(int $id_customer)
     {
+        // En cas de non connexion
+        if(!check_session($this->session))
+        {
+            redirect("signin", "location", 302) ;
+            exit(0) ;
+        }
+        // Validation de formulaire
         $balance = floatval($this->input->post('balance')) ;
         $extra = floatval($this->input->post('extra')) ;
-        $id_customer = (int) $this->input->post('id_customer') ;
         $account_type = ((int) ($this->input->post('type'))) ? 'savings account': 'current account' ;
         $post = [
             'customer'=>$id_customer, // id du client
@@ -43,7 +50,7 @@ class Banking extends CI_Controller
         ] ;
 
         // Règle de validation
-        $this->form_validation->set_rules("balance", "montant initiale",
+        $this->form_validation->set_rules("balance", "montant initial",
             ['required', 'trim', 'strip_tags', 'greater_than[100]'],
             ['greater_than'=> "Le {field} doit être supérieur à 100",
                 'required'=> "Le champ {field} est requis"]) ;
@@ -52,24 +59,30 @@ class Banking extends CI_Controller
             ['greater_than'=> "L'{field} doit être supérieur à 10",
                 'required'=> "Le champ {field} est requis"]) ;
 
-        if($this->form_validation->run() === FALSE)
+        // Données à afficher dans la vue.
+        $data['name'] = $this->session->userdata('name') ;
+        $data['customer'] = NULL ;
+        $data['error_msg'] = '' ;
+        try
         {
-            $this->load->view("banking/error") ;
+            $data['customer'] = get("http://localhost:8181/", "/customer/get/id/{$id_customer}");
         }
-        else
+        catch (Exception $exception)
+        {
+            $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
+        }
+        if($this->form_validation->run())
         {
             try
             {
-                $response = post("http://localhost:8181", "/account/add/", $post) ;
-            }catch (Exception $exception)
-            {
-                echo $exception->getMessage().'<br/>' ;
-                echo '<a href="http://[::1]/~jordy/cbanking_web_client.git/index.php/banking?id_customer='.$this->input->post('id_customer').'" title="banking">Réessayer !</a>' ;
-                die(-1) ;
+                post("http://localhost:8181/", "/account/add", $post) ;
             }
-            redirect("banking?id_customer={$this->input->post('id_customer')}", "location", 302) ;
-            exit(0) ;
+            catch (Exception $exception)
+            {
+                $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
+            }
         }
+        $this->load->view("ace/banking/create", $data) ;
     }
     /**
      * Cette fonction traite les données venant du
