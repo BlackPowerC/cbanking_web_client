@@ -34,6 +34,34 @@ class Management extends CI_Controller
     }
 
     /**
+     * Affiche la page de profil d'un client.
+     * @param $id_customer L'identifiant du client.
+     */
+    public function customer($id_customer)
+    {
+        // En cas de non connexion
+        if(!check_session($this->session))
+        {
+            // redirection vers la page de connection
+            redirect("signin", "location", 302) ;
+            exit(0) ;
+        }
+        $data['error_msg'] = "" ;
+        $data['customer'] = null ;
+        try
+        {
+            $data['customer'] = get("http://localhost:8181", "/customer/get/id/{$id_customer}")['json'] ;
+            $data['name'] = $data['customer']['name'] ;
+            $data['email'] = $data['customer']['email'] ;
+            $data['surname'] = $data['customer']['surname'] ;
+        }catch (Exception $exception)
+        {
+            $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
+        }
+        $this->load->view('ace/management/customer', $data) ;
+    }
+
+    /**
      * Affiche la page de listing de tout les clients
      */
     public function customers()
