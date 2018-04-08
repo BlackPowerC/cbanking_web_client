@@ -35,7 +35,7 @@
 
             <ul class="submenu">
                 <li class="">
-                    <a href="form-elements.html">
+                    <a href="<?php echo BASE_URL.'index.php/management/customers'; ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Liste des clients
                     </a>
@@ -44,9 +44,9 @@
                 </li>
 
                 <li class="">
-                    <a href="form-elements-2.html">
+                    <a href="<?php echo BASE_URL.'index.php/management/subscription'; ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
-                        Inscrire un clients
+                        Inscrire un client
                     </a>
 
                     <b class="arrow"></b>
@@ -66,7 +66,7 @@
 
             <ul class="submenu">
                 <li class="">
-                    <a href="form-elements.html">
+                    <a href="<?php echo BASE_URL.'index.php/management/subordinates'; ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Liste des subordonnés
                     </a>
@@ -75,7 +75,7 @@
                 </li>
 
                 <li class="">
-                    <a href="form-elements-2.html">
+                    <a href="<?php echo BASE_URL.'index.php/management/subscription'; ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Inscrire un subordonné
                     </a>
@@ -96,7 +96,7 @@
 
             <ul class="submenu">
                 <li class="">
-                    <a href="form-elements.html">
+                    <a href="<?php echo BASE_URL.'index.php/banking/accounts'; ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Liste des comptes
                     </a>
@@ -105,7 +105,7 @@
                 </li>
 
                 <li class="">
-                    <a href="form-elements-2.html">
+                    <a href="#">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Créer de compte
                     </a>
