@@ -18,7 +18,7 @@
             </a>
             <ul class="user-menu dropdown-menu-right dropdown-menu dropdown-yellow dropdown-caret dropdown-close">
                 <li>
-                    <a href="profile">
+                    <a href="<?php echo BASE_URL.'index.php/home/profile';?>" >
                         <i class="ace-icon fa fa-user"></i>Profil
                     </a>
                 </li>
@@ -26,7 +26,7 @@
                 <li class="divider"></li>
 
                 <li>
-                    <a href="../signin/logout">
+                    <a href="<?php echo BASE_URL.'index.php/signin/logout';?>">
                         <i class="ace-icon fa fa-power-off"></i>Déconnexion
                     </a>
                 </li>
