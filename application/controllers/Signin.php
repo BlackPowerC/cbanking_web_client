@@ -17,7 +17,7 @@ class Signin extends CI_Controller
     {
         parent::__construct() ;
         // autoloading
-        $this->load->library(['session', 'form_validation']) ;
+        $this->load->library(['session', 'form_validation', 'HTML']) ;
         $this->load->helper(['url', 'form', 'cookie', 'util']) ;
         // Variable pour les messages d'erreurs
         $this->error_msg['error_msg'] = "" ;

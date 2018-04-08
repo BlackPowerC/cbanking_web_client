@@ -1,18 +1,11 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: jordy
- * Date: 07/04/18
- * Time: 11:49
- */
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
 <?php $this->load->view("ace/head.inc.php"); ?>
 
 <body class="no-skin">
-<div id="navbar" class="navbar navbar-default          ace-save-state">
+<div id="navbar" class="navbar navbar-default ace-save-state">
     <div class="navbar-container ace-save-state" id="navbar-container">
         <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
             <span class="sr-only">Toggle sidebar</span>
@@ -28,7 +21,7 @@
             <a href="index.html" class="navbar-brand">
                 <small>
                     <i class="fa fa-leaf"></i>
-                    Ace Admin
+                    Panneau d'administration
                 </small>
             </a>
         </div>
@@ -49,7 +42,8 @@
         <div class="main-content-inner">
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
-                    <li class="active">User Profile</li>
+
+                    <li class="active">Profil d'utilisateur</li>
                 </ul><!-- /.breadcrumb -->
 
                 <div class="nav-search" id="nav-search">
@@ -64,93 +58,55 @@
 
             <div class="page-content">
 
-                <?php $this->load->view("client_error") ; ?>
-
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
+                        <div class="space-20"></div>
                         <div>
-                            <div id="user-profile-1" class="row">
-
-                                <div class="col-xs-12 col-sm-9" style="width: 100%; margin: auto;">
-
-                                    <div class="space-20"></div>
-
-                                    <div class="widget-box transparent">
-                                        <div class="widget-header widget-header-small">
-                                            <h4 class="widget-title blue smaller">
-                                                <i class="ace-icon fa fa-rss orange"></i>
-                                                Listes des Comptes
-                                            </h4>
-                                        </div>
-                                        <?php
-                                        if($accounts['json'] != NULL)
-                                        {
-                                            ?>
-                                            <table class="table table-stripped">
-                                                <thead>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>Date de création</td>
-                                                    <td>Solde</td>
-                                                    <td>Propriétaire</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <?php
-                                                foreach($accounts['json'] as $account)
-                                                {?>
-                                                    <tr>
-                                                        <td>
-                                                            <a title="Détails du client" href="<?php echo BASE_URL."index.php/banking/account/{$account['id']}" ;?>">
-                                                                <i class="fa fa-eye fa-2x"></i>
-                                                            </a>
-                                                        </td>
-                                                        <td><?php echo $account['dateCreation']; ?></td>
-                                                        <td><?php echo $account['balance']; ?></td>
-                                                        <td><?php echo $account['customer']['name'].' '.$account['customer']['surname']; ?></td>
-                                                        <td>
-                                                            <div class="dropdown">
-                                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                                                    Faire une opération
-                                                                        <i class="fa fa-plus"></i>
-                                                                </button>
-                                                                <ul class="dropdown-menu">
-                                                                    <li class="dropdown-item">
-                                                                        <a title="Dépot/Retrait" href="#">Dépot/Retrait</a>
-                                                                    </li>
-                                                                    <li class="dropdown-item">
-                                                                        <a title="Virement" href="#">Virement</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <?php
-                                                }
-                                                ?>
-                                                </tbody>
-                                            </table>
-                                            <?php
-                                        }
-                                        else
-                                        {?>
-                                            <div class="alert alert-info">
-                                                Aucun compte n'est créer dans la banque.
-                                            </div>
-                                            <?php
-                                        }
-                                        ?>
-                                        </dir>
-
-                                        <div class="hr hr2 hr-double"></div>
-
-                                        <div class="space-6"></div>
-
-                                    </div>
-                                </div>
+                            <div class="well text-center">
+                                <span style="font-size: 1.2em;">
+                                    Historique du compte N° <?php echo $account['id']; ?> de
+                                    <?php echo $account['customer']['name'].' '.$account['customer']['surname']; ?>
+                                </span>
                             </div>
+                            <table class="table table-striped">
+                                <thead class="thead-inverse">
+                                    <tr>
+                                        <td>Description</td>
+                                        <td>Date</td>
+                                        <td>Montant</td>
+                                        <td>Employé</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Création</td>
+                                        <td><?php echo $account['dateCreation'] ;?></td>
+                                        <td><?php echo $account['balance']; ?></td>
+                                        <td><?php echo $account['employee']['name'].' '.$account['employee']['name'] ?></td>
+                                    </tr>
+                                <?php
+                                if(count($account['operations']) > 0)
+                                {?>
+                                    <?php
+                                    foreach($account['operations'] as $operation)
+                                    {
+                                    ?>
+                                        <tr>
+                                            <td><?php echo ucfirst($operation['type']) ;?></td>
+                                            <td><?php echo $operation['date'] ;?></td>
+                                            <td><?php echo $operation['amount']; ?></td>
+                                            <td><?php echo $operation['employee']['name'].' '.$operation['employee']['name'] ?></td>
+                                        </tr>
+                                    <?php
+                                    }
+                                    ?>
+
+                                <?php
+                                }
+                                ?>
+                                </tbody>
+                            </table>
                             <!-- PAGE CONTENT ENDS -->
                         </div><!-- /.col -->
                     </div><!-- /.row -->
@@ -162,8 +118,8 @@
             <div class="footer-inner">
                 <div class="footer-content">
 						<span class="bigger-120">
-							<span class="blue bolder">Ace</span>
-							Application &copy; 2013-2014
+							<span class="blue bolder">CBANKING WEB CLIENT</span>
+							Application &copy; 2018
 						</span>
 
                     &nbsp; &nbsp;
@@ -289,8 +245,6 @@
                 }
             });
 
-
-
             //custom date editable
             $('#signup').editable({
                 type: 'adate',
@@ -347,8 +301,6 @@
                 success: function(response, newValue) {
                 }
             });
-
-
 
             // *** editable avatar *** //
             try {//ie8 throws some harmless exceptions, so let's catch'em
@@ -440,20 +392,6 @@
                 })
             }catch(e) {}
 
-            /**
-             //let's display edit mode by default?
-             var blank_image = true;//somehow you determine if image is initially blank or not, or you just want to display file input at first
-             if(blank_image) {
-					$('#avatar').editable('show').on('hidden', function(e, reason) {
-						if(reason == 'onblur') {
-							$('#avatar').editable('show');
-							return;
-						}
-						$('#avatar').off('hidden');
-					})
-				}
-             */
-
             //another option is using modals
             $('#avatar2').on('click', function(){
                 var modal =
@@ -479,7 +417,6 @@
                       </div>\
                      </div>\
                     </div>';
-
 
                 var modal = $(modal);
                 modal.modal("show").on("hidden", function(){
@@ -536,8 +473,6 @@
 
             });
 
-
-
             //////////////////////////////
             $('#profile-feed-1').ace_scroll({
                 height: '250px',
@@ -584,7 +519,6 @@
                 e.preventDefault();
             });
 
-
             ///////////////////////////////////////////
             $('#user-profile-3')
                 .find('input[type=file]').ace_file_input({
@@ -608,7 +542,6 @@
 
             $('#user-profile-3').find('input[type=file]').ace_file_input('show_file_list', [{type: 'image', name: $('#avatar').attr('src')}]);
 
-
             ////////////////////
             //change profile
             $('[data-toggle="buttons"] .btn').on('click', function(e){
@@ -617,8 +550,6 @@
                 $('.user-profile').parent().addClass('hide');
                 $('#user-profile-'+which).parent().removeClass('hide');
             });
-
-
 
             /////////////////////////////////////
             $(document).one('ajaxloadstart.page', function(e) {

@@ -181,11 +181,28 @@ class Banking extends CI_Controller
 
     /**
      * Affiche la page détaillé d'un compte bancaire.
-     * @param $id L'identifiant du compte.
+     * @param $id int L'identifiant du compte.
      */
-    public function account($id)
+    public function account(int $id)
     {
-
+        // En cas de non connexion
+        if(!check_session($this->session))
+        {
+            redirect("signin", "location", 302) ;
+            exit(0) ;
+        }
+        $data['error_msg'] = "" ;
+        $data['name'] = $this->session->userdata('name') ;
+        $data['account'] = NULL ;
+        try
+        {
+            $data['account'] = get("http://localhost:8181", "/account/get/{$id}")['json'] ;
+        }
+        catch (Exception $exception)
+        {
+            $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>' ;
+        }
+        $this->load->view("ace/banking/account", $data) ;
     }
 
 }
