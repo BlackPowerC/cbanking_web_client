@@ -88,44 +88,47 @@ class Banking extends CI_Controller
      * Cette fonction traite les données venant du
      * formulaire des opérations de banque.
      */
-    public function operation()
+    public function operation(int $id_account)
     {
-        $balance = floatval($this->input->post('balance')) ;
-        $id_account = (int) $this->input->post('id_account') ;
-        $operation_type = ((int) ($this->input->post('type'))) ? 'retrait': 'depot' ;
-        $post = [
-            'date'=> date("d-m-Y H:i:s"), // date de l'opération
-            'balance'=>$balance, // montant initiale
-            'type'=>$operation_type, // type d'opération
-            'account'=>$id_account, // type d'opération
-            'token'=>$this->session->userdata('token') // jetton d'identification
-        ] ;
-
         // Règle de validation
         $this->form_validation->set_rules("balance", "montant de la transaction",
             ['required', 'trim', 'strip_tags', 'greater_than[1]'],
             ['greater_than'=> "Le {field} doit être supérieur à 1",
                 'required'=> "Le champ {field} est requis"]) ;
 
-        if($this->form_validation->run() === FALSE)
+        if($this->form_validation->run())
         {
-            $this->load->view("banking/error") ;
-        }
-        else
-        {
+            $balance = floatval($this->input->post('balance')) ;
+            $operation_type = ((int) ($this->input->post('type'))) ? 'retrait': 'depot' ;
+            $post = [
+                'date'=> date("d-m-Y H:i:s"), // date de l'opération
+                'balance'=>$balance, // montant initiale
+                'type'=>$operation_type, // type d'opération
+                'account'=>$id_account, // type d'opération
+                'token'=>$this->session->userdata('token') // jetton d'identification
+            ] ;
             try
             {
-                $response = post("http://localhost:8181", "/operation/add/", $post) ;
+                post("http://localhost:8181", "/operation/add/", $post) ;
             }catch (Exception $exception)
             {
-                var_dump(json_encode($post)) ;
-                echo $exception->getMessage().'<br/>' ;
-                echo '<a href="http://[::1]/~jordy/cbanking_web_client.git/index.php/banking?id_customer='.$this->input->post('id_customer').'" title="banking">Réessayer !</a>' ;
-                die(-1) ;
+
             }
-            redirect("banking?id_customer={$this->input->post('id_customer')}", "location", 302) ;
-            exit(0) ;
         }
+
+        $data['error_msg'] = "" ;
+        $data['name'] = $this->session->userdata('name') ;
+        $data['account'] = NULL ;
+
+        try
+        {
+            $data['account'] = get("http://localhost:8181", "/account/get/{$id_account}")['json'] ;
+        }
+        catch (Exception $exception)
+        {
+            $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>' ;
+        }
+        $this->load->view("ace/banking/operation", $data) ;
     }
 
     public function index()

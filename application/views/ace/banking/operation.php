@@ -3,15 +3,20 @@
  * Created by PhpStorm.
  * User: jordy
  * Date: 07/04/18
- * Time: 11:49
- */
-?>
+ * Time: 09:55
+ */?>
+
+<!-- Vue de la méthode Banking::create($id) -->
+
 <!DOCTYPE html>
 <html lang="en">
 
 <?php $this->load->view("ace/head.inc.php"); ?>
 
 <body class="no-skin">
+
+<?php $this->load->view("client_error") ?>
+
 <div id="navbar" class="navbar navbar-default          ace-save-state">
     <div class="navbar-container ace-save-state" id="navbar-container">
         <button type="button" class="navbar-toggle menu-toggler pull-left" id="menu-toggler" data-target="#sidebar">
@@ -49,102 +54,67 @@
         <div class="main-content-inner">
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
+
                     <li class="active">User Profile</li>
                 </ul><!-- /.breadcrumb -->
 
                 <div class="nav-search" id="nav-search">
                     <form class="form-search">
-                        <span class="input-icon">
-                            <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-                            <i class="ace-icon fa fa-search nav-search-icon"></i>
-                        </span>
+								<span class="input-icon">
+									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+									<i class="ace-icon fa fa-search nav-search-icon"></i>
+								</span>
                     </form>
                 </div><!-- /.nav-search -->
             </div>
 
             <div class="page-content">
 
-                <?php $this->load->view("client_error") ; ?>
-
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="">
                         <!-- PAGE CONTENT BEGINS -->
                         <div>
                             <div id="user-profile-1" class="row">
 
-                                <div class="col-xs-12 col-sm-9" style="width: 100%; margin: auto;">
+                                <div class="" style="width: 50%; margin: auto;">
 
                                     <div class="space-20"></div>
 
                                     <div class="widget-box transparent">
                                         <div class="widget-header widget-header-small">
-                                            <h4 class="widget-title blue smaller">
+                                            <h2 class="widget-title blue smaller">
                                                 <i class="ace-icon fa fa-rss orange"></i>
-                                                Listes des Comptes
-                                            </h4>
+                                                Opération sur le compte N° <?php echo "{$account['id']} de {$account['customer']['name']} {$account['customer']['surname']}" ; ?>
+                                            </h2>
                                         </div>
-                                        <?php
-                                        if($accounts['json'] != NULL)
-                                        {
+                                        <div class="space-20"></div>
+                                        <div>
+                                            <?php
+                                            echo validation_errors('<div class="alert alert-warning">', '</div>') ;
+                                            echo form_open("");
                                             ?>
-                                            <table class="table table-stripped">
-                                                <thead>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>Date de création</td>
-                                                    <td>Solde</td>
-                                                    <td>Propriétaire</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <?php
-                                                foreach($accounts['json'] as $account)
-                                                {?>
-                                                    <tr>
-                                                        <td>
-                                                            <a title="Détails du client" href="<?php echo BASE_URL."index.php/banking/account/{$account['id']}" ;?>">
-                                                                <i class="fa fa-eye fa-2x"></i>
-                                                            </a>
-                                                        </td>
-                                                        <td><?php echo $account['dateCreation']; ?></td>
-                                                        <td><?php echo $account['balance']; ?></td>
-                                                        <td><?php echo $account['customer']['name'].' '.$account['customer']['surname']; ?></td>
-                                                        <td>
-                                                            <div class="dropdown">
-                                                                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                                                    Faire une opération
-                                                                        <i class="fa fa-plus"></i>
-                                                                </button>
-                                                                <ul class="dropdown-menu">
-                                                                    <li class="dropdown-item">
-                                                                        <a title="Dépot/Retrait" href="<?php echo BASE_URL."index.php/banking/operation/{$account['id']}" ?>">Dépot/Retrait</a>
-                                                                    </li>
-                                                                    <li class="dropdown-item">
-                                                                        <a title="Virement" href="#">Virement</a>
-                                                                    </li>
-                                                                </ul>
-                                                            </div>
-                                                        </td>
-                                                    </tr>
-                                                    <?php
-                                                }
-                                                ?>
-                                                </tbody>
-                                            </table>
-                                            <?php
-                                        }
-                                        else
-                                        {?>
-                                            <div class="alert alert-info">
-                                                Aucun compte n'est créer dans la banque.
+                                            <!-- Type de transaction -->
+                                            <div class="form-group">
+                                                <select name="type" title="Type d'opération" class="form-control">
+                                                    <option value="0">Dépot</option>
+                                                    <option value="1">Retrait</option>
+                                                </select>
                                             </div>
-                                            <?php
-                                        }
-                                        ?>
-                                        </dir>
-
-                                        <div class="hr hr2 hr-double"></div>
+                                            <!-- Montant de la transaction -->
+                                            <div class="form-group">
+                                                <?php
+                                                echo form_input([
+                                                    "name"=>"balance",
+                                                    "type"=>"number",
+                                                    "placeholder"=>"Montant",
+                                                    "class"=>"form-control",
+                                                    "title"=>"Montant de la transaction"
+                                                ]) ;
+                                                ?>
+                                            </div>
+                                            <input style="width: 100%" id="btn-submit" class="btn btn-primary" type="submit" value="Envoyer" />
+                                            </form>
+                                        </div>
 
                                         <div class="space-6"></div>
 
@@ -165,21 +135,18 @@
 							<span class="blue bolder">Ace</span>
 							Application &copy; 2013-2014
 						</span>
-
                     &nbsp; &nbsp;
                     <span class="action-buttons">
-							<a href="#">
-								<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-							</a>
-
-							<a href="#">
-								<i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
-							</a>
-
-							<a href="#">
-								<i class="ace-icon fa fa-rss-square orange bigger-150"></i>
-							</a>
-						</span>
+                        <a href="#">
+                            <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
+                        </a>
+                        <a href="#">
+                            <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+                        </a>
+                        <a href="#">
+                            <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
+                        </a>
+                    </span>
                 </div>
             </div>
         </div>
@@ -210,6 +177,8 @@
                     type: 'text',
                     name: 'username'
                 });
+
+
 
             //select2 editable
             var countries = [];
@@ -289,8 +258,6 @@
                 }
             });
 
-
-
             //custom date editable
             $('#signup').editable({
                 type: 'adate',
@@ -317,7 +284,6 @@
                     //,nativeUI: true//if true and browser support input[type=number], native browser control will be used
                 }
             });
-
 
             $('#login').editable({
                 type: 'slider',
@@ -347,8 +313,6 @@
                 success: function(response, newValue) {
                 }
             });
-
-
 
             // *** editable avatar *** //
             try {//ie8 throws some harmless exceptions, so let's catch'em
@@ -410,7 +374,6 @@
                             return deferred.promise();
                         }
 
-
                         //dummy upload
                         setTimeout(function(){
                             if("FileReader" in window) {
@@ -440,20 +403,6 @@
                 })
             }catch(e) {}
 
-            /**
-             //let's display edit mode by default?
-             var blank_image = true;//somehow you determine if image is initially blank or not, or you just want to display file input at first
-             if(blank_image) {
-					$('#avatar').editable('show').on('hidden', function(e, reason) {
-						if(reason == 'onblur') {
-							$('#avatar').editable('show');
-							return;
-						}
-						$('#avatar').off('hidden');
-					})
-				}
-             */
-
             //another option is using modals
             $('#avatar2').on('click', function(){
                 var modal =
@@ -479,7 +428,6 @@
                       </div>\
                      </div>\
                     </div>';
-
 
                 var modal = $(modal);
                 modal.modal("show").on("hidden", function(){
@@ -526,7 +474,6 @@
                         working = false;
                     });
 
-
                     setTimeout(function(){
                         deferred.resolve();
                     } , parseInt(Math.random() * 800 + 800));
@@ -535,8 +482,6 @@
                 });
 
             });
-
-
 
             //////////////////////////////
             $('#profile-feed-1').ace_scroll({
@@ -563,7 +508,6 @@
             });
 
             ///////////////////////////////////////////
-
             //right & left position
             //show the user info on right or left depending on its position
             $('#user-profile-2 .memberdiv').on('mouseenter touchstart', function(){
@@ -583,7 +527,6 @@
             }).on('click', function(e) {
                 e.preventDefault();
             });
-
 
             ///////////////////////////////////////////
             $('#user-profile-3')
@@ -608,7 +551,6 @@
 
             $('#user-profile-3').find('input[type=file]').ace_file_input('show_file_list', [{type: 'image', name: $('#avatar').attr('src')}]);
 
-
             ////////////////////
             //change profile
             $('[data-toggle="buttons"] .btn').on('click', function(e){
@@ -617,8 +559,6 @@
                 $('.user-profile').parent().addClass('hide');
                 $('#user-profile-'+which).parent().removeClass('hide');
             });
-
-
 
             /////////////////////////////////////
             $(document).one('ajaxloadstart.page', function(e) {
