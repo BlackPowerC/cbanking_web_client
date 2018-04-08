@@ -142,7 +142,6 @@
                                             <?php
                                         }
                                         ?>
-                                        </dir>
 
                                         <div class="hr hr2 hr-double"></div>
 

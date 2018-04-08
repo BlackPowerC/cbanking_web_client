@@ -71,23 +71,23 @@
             <div class="page-content">
 
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="">
                         <!-- PAGE CONTENT BEGINS -->
                         <div>
                             <div id="user-profile-1" class="row">
 
-                                <div class="col-xs-12 col-sm-9" style="width: 100%; margin: auto;">
+                                <div class="" style="width: 50%; margin: auto;">
 
                                     <div class="space-20"></div>
 
                                     <div class="widget-box transparent">
                                         <div class="widget-header widget-header-small">
-                                            <h4 class="widget-title blue smaller">
+                                            <h2 class="widget-title blue smaller">
                                                 <i class="ace-icon fa fa-rss orange"></i>
                                                 Créer un compte pour <?php echo $customer['json']['name'].' '.$customer['json']['surname'] ; ?>
-                                            </h4>
+                                            </h2>
                                         </div>
-
+                                        <div class="space-20"></div>
                                         <div>
                                             <?php
                                             echo validation_errors('<div class="alert alert-warning">', '</div>') ;
