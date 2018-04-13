@@ -97,6 +97,7 @@ class Management extends CI_Controller
         }
         $data['status_code'] = 0 ;
         $data['error_msg'] = '' ;
+        $data['name'] = $this->session->userdata("name") ;
 
         /* validation de formulaire */
         // Le nom
