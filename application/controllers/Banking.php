@@ -69,7 +69,7 @@ class Banking extends CI_Controller
         }
         catch (Exception $exception)
         {
-            $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
+            $data['error_msg'] = '<div class="alert alert-succes">'.$exception->getMessage().'</div>';
         }
         if($this->form_validation->run())
         {
@@ -84,6 +84,7 @@ class Banking extends CI_Controller
         }
         $this->load->view("ace/banking/create", $data) ;
     }
+
     /**
      * Cette fonction traite les données venant du
      * formulaire des opérations de banque.
@@ -95,6 +96,10 @@ class Banking extends CI_Controller
             ['required', 'trim', 'strip_tags', 'greater_than[1]'],
             ['greater_than'=> "Le {field} doit être supérieur à 1",
                 'required'=> "Le champ {field} est requis"]) ;
+
+        $data['error_msg'] = "" ;
+        $data['name'] = $this->session->userdata('name') ;
+        $data['account'] = NULL ;
 
         if($this->form_validation->run())
         {
@@ -112,13 +117,9 @@ class Banking extends CI_Controller
                 post("http://localhost:8181", "/operation/add/", $post) ;
             }catch (Exception $exception)
             {
-
+                $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
             }
         }
-
-        $data['error_msg'] = "" ;
-        $data['name'] = $this->session->userdata('name') ;
-        $data['account'] = NULL ;
 
         try
         {
