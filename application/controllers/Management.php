@@ -54,6 +54,7 @@ class Management extends CI_Controller
             $data['name'] = $data['customer']['name'] ;
             $data['email'] = $data['customer']['email'] ;
             $data['surname'] = $data['customer']['surname'] ;
+            $data['id_customer'] = $id_customer ;
         }catch (Exception $exception)
         {
             $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';

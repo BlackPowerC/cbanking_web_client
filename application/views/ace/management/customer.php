@@ -51,6 +51,7 @@
                                 if(key_exists('accounts', $customer))
                                 {
                                 ?>
+                                <a href="<?php echo base_url()."index.php/banking/create/{$id_customer}"; ?>">Créer un nouveau compte !</a>
                                 <table class="table table-stripped">
                                     <thead>
                                     <tr>
@@ -99,7 +100,7 @@
                                 else
                                 {?>
                                     <div class="alert alert-info">
-                                        Aucun compte .
+                                        <a href="<?php echo base_url()."index.php/banking/create/{$id_customer}"; ?>">Créer un premier compte !</a>
                                     </div>
                                     <?php
                                 }
