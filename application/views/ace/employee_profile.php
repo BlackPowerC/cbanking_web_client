@@ -44,7 +44,7 @@
                                 <div class="col-xs-12 col-sm-3 center">
                                     <div>
                                         <span class="profile-picture">
-										    <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="assets/images/avatars/profile-pic.jpg" />
+										    <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="<?php echo HTML::img("assets/images/avatars/man.png")?>" />
                                         </span>
 
                                         <div class="space-4"></div>

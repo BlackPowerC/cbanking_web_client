@@ -3,6 +3,8 @@
     <meta charset="utf-8" />
     <title>Tableaux de bord - CBANKING WEB CLIENT</title>
 
+    <link rel="shortcut icon" href="<?php echo HTML::img("assets/images/business.png") ?>" type="image/x-icon" />
+
     <meta name="description" content="overview &amp; stats" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
 

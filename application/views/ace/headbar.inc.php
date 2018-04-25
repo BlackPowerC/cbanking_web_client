@@ -20,7 +20,7 @@
         <div class="navbar-header pull-left">
             <a href="index.html" class="navbar-brand">
                 <small>
-                    <i class="fa fa-leaf"></i>
+                    <img style="display:inline" class="editable img-responsive" alt="icon" src="<?php echo HTML::img("assets/images/business.png")?>" />
                     Panneau d'administration
                 </small>
             </a>
