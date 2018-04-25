@@ -30,15 +30,16 @@ class Management extends CI_Controller
       }
       $data['error_msg'] = "" ;
       $data['employees'] = null ;
-      $date['name'] = $this->session->userdata('session')['name'] ;
+      $data['name'] = $this->session->userdata('name') ;
+      $data['view'] = "ace/management/subordinates.php" ;
       try
       {
-          $data['employees'] = get("http://localhost:8181", "/employee/subordinate/get/all/{$this->session->userdata('session')['token']}")['json'] ;
+          $data['employees'] = get("http://localhost:8181", "/employee/subordinate/get/all/{$this->session->userdata('token')}")['json'] ;
       }catch (Exception $exception)
       {
           $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
       }
-      $this->load->view('ace/management/subordinates', $data) ;
+      $this->load->view('ace/management/persons', $data) ;
     }
 
     /**
@@ -92,6 +93,7 @@ class Management extends CI_Controller
         $data['error_msg'] = "" ;
         $data['name'] = $this->session->userdata("name") ;
         $data['customers'] = null ;
+        $data['view'] = "ace/management/customers.php" ;
         try
         {
             $data['customers'] = get("http://localhost:8181", '/customer/get/all') ;
@@ -99,7 +101,7 @@ class Management extends CI_Controller
         {
             $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
         }
-        $this->load->view('ace/management/customers', $data) ;
+        $this->load->view('ace/management/persons', $data) ;
     }
 
     /**
