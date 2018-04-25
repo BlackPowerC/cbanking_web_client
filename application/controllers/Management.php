@@ -21,7 +21,24 @@ class Management extends CI_Controller
      */
     public function subordinates()
     {
-
+      // En cas de non connexion
+      if(!check_session($this->session))
+      {
+          // redirection vers la page de connection
+          redirect("signin", "location", 302) ;
+          exit(0) ;
+      }
+      $data['error_msg'] = "" ;
+      $data['employees'] = null ;
+      $date['name'] = $this->session->userdata('session')['name'] ;
+      try
+      {
+          $data['employees'] = get("http://localhost:8181", "/employee/subordinate/get/all/{$this->session->userdata('session')['token']}")['json'] ;
+      }catch (Exception $exception)
+      {
+          $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
+      }
+      $this->load->view('ace/management/subordinates', $data) ;
     }
 
     /**

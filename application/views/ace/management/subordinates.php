@@ -1,11 +1,4 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: jordy
- * Date: 06/04/18
- * Time: 19:49
- */
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -26,134 +19,110 @@
         <div class="main-content-inner">
             <div class="breadcrumbs ace-save-state" id="breadcrumbs">
                 <ul class="breadcrumb">
-
-                    <li class="active">User Profile</li>
+                    <li class="active">Profil d'utilisateur</li>
                 </ul><!-- /.breadcrumb -->
 
                 <div class="nav-search" id="nav-search">
                     <form class="form-search">
-								<span class="input-icon">
-									<input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
-									<i class="ace-icon fa fa-search nav-search-icon"></i>
-								</span>
+                        <span class="input-icon">
+                            <input type="text" placeholder="Search ..." class="nav-search-input" id="nav-search-input" autocomplete="off" />
+                            <i class="ace-icon fa fa-search nav-search-icon"></i>
+                        </span>
                     </form>
                 </div><!-- /.nav-search -->
             </div>
 
             <div class="page-content">
 
-                <?php $this->load->view("client_error") ; ?>
-
                 <div class="row">
                     <div class="col-xs-12">
                         <!-- PAGE CONTENT BEGINS -->
                         <div>
-                            <div id="user-profile-1" class="row">
+                            <?php $this->load->view("ace/profile.inc.php") ?>
 
-                                <div class="col-xs-12 col-sm-9" style="width: 100%; margin: auto;">
-
-                                    <div class="space-20"></div>
-
-                                    <div class="widget-box transparent">
-                                        <div class="widget-header widget-header-small">
-                                            <h4 class="widget-title blue smaller">
-                                                <i class="ace-icon fa fa-rss orange"></i>
-                                                Listes des Clients
-                                            </h4>
-                                        </div>
-                                        <?php
-                                        if($customers['json'] != NULL)
-                                        {
-                                            ?>
-                                            <table class="table table-stripped">
-                                                <thead>
-                                                <tr>
-                                                    <td>Détails</td>
-                                                    <td>Nom</td>
-                                                    <td>Prénom</td>
-                                                    <td>Email</td>
-                                                    <td>Action</td>
-                                                </tr>
-                                                </thead>
-                                                <tbody>
-                                                <?php
-                                                foreach($customers['json'] as $customer)
-                                                {?>
-                                                    <tr>
-                                                        <td>
-                                                            <a title="Détails du client" href="<?php echo "customer/{$customer['id']}" ?>">
-                                                                <i class="fa fa-eye fa-2x"></i>
-                                                            </a>
-                                                        </td>
-                                                        <td><?php echo $customer['name']; ?></td>
-                                                        <td><?php echo $customer['surname']; ?></td>
-                                                        <td><?php echo $customer['email']; ?></td>
-                                                        <td>
-                                                            <a title="Créer un compte" href="<?php echo "../banking/create/{$customer['id']}" ?>">
-                                                                <i class="fa fa-plus fa-2x"></i>
-                                                            </a>
-                                                        </td>
-                                                    </tr>
-                                                    <?php
-                                                }
-                                                ?>
-                                                </tbody>
-                                            </table>
-                                            <?php
-                                        }
-                                        else
-                                        {?>
-                                            <div class="alert alert-info">
-                                                Aucun client n'est inscrit dans la banque.
-                                            </div>
-                                            <?php
-                                        }
-                                        ?>
-                                        </dir>
-
-                                        <div class="hr hr2 hr-double"></div>
-
-                                        <div class="space-6"></div>
-
+                            <div class="widget-box transparent">
+                                <div class="widget-header widget-header-small">
+                                    <h4 class="widget-title blue smaller">
+                                        <i class="ace-icon fa fa-rss orange"></i>
+                                        Listes des subordonnés
+                                    </h4>
+                                </div>
+                                <?php
+                                if(!is_null($employees) && count($employees) > 0)
+                                {
+                                ?>
+                                <a href="<?php echo base_url()."index.php/banking/create/{$id_customer}"; ?>">Créer un nouveau compte !</a>
+                                <table class="table table-stripped">
+                                    <thead>
+                                    <tr>
+                                        <td>Détails</td>
+                                        <td>Nom</td>
+                                        <td>Prénom</td>
+                                        <td>E-mail</td>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <?php
+                                    foreach($employees as $employee)
+                                    {?>
+                                      <td><a href="#" title="Détails"><i class="fa fa-eye"></i></a></td>
+                                      <td><?php echo $employee['name']; ?></td>
+                                      <td><?php echo $employee['surname']; ?></td>
+                                      <td><?php echo $employee['email']; ?></td>
+                                    <?php
+                                    }
+                                    ?>
+                                    </tbody>
+                                </table>
+                                <?php
+                                }
+                                else
+                                {?>
+                                    <div class="alert alert-info">
+                                        <a href="<?php echo base_url()."index.php/management/subscription"; ?>">Inscrire un subordonnés !</a>
                                     </div>
+                                    <?php
+                                }
+                                ?>
+                                    <div class="hr hr2 hr-double"></div>
+
+                                    <div class="space-6"></div>
                                 </div>
                             </div>
-                            <!-- PAGE CONTENT ENDS -->
-                        </div><!-- /.col -->
-                    </div><!-- /.row -->
-                </div><!-- /.page-content -->
-            </div>
-        </div><!-- /.main-content -->
+                        </div>
+                    <!-- PAGE CONTENT ENDS -->
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div>
+    </div><!-- /.main-content -->
 
-        <div class="footer">
-            <div class="footer-inner">
-                <div class="footer-content">
-						<span class="bigger-120">
-							<span class="blue bolder">Ace</span>
-							Application &copy; 2013-2014
-						</span>
-
-                    &nbsp; &nbsp;
-                    <span class="action-buttons">
-							<a href="#">
-								<i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
-							</a>
-
-							<a href="#">
-								<i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
-							</a>
-
-							<a href="#">
-								<i class="ace-icon fa fa-rss-square orange bigger-150"></i>
-							</a>
-						</span>
-                </div>
+    <div class="footer">
+        <div class="footer-inner">
+            <div class="footer-content">
+                <span class="bigger-120">
+                    <span class="blue bolder">CBANKING WEB CLIENT</span>
+                    Application &copy; 2018
+                    </span>
+                &nbsp; &nbsp;
+                <span class="action-buttons">
+                    <a href="#">
+                        <i class="ace-icon fa fa-twitter-square light-blue bigger-150"></i>
+                    </a>
+                    <a href="#">
+                        <i class="ace-icon fa fa-facebook-square text-primary bigger-150"></i>
+                    </a>
+                    <a href="#">
+                        <i class="ace-icon fa fa-rss-square orange bigger-150"></i>
+                    </a>
+                </span>
             </div>
         </div>
+    </div>
 
-        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-            <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-        </a>
+    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+    </a>
     </div><!-- /.main-container -->
 
     <!-- basic scripts -->
@@ -177,9 +146,6 @@
                     type: 'text',
                     name: 'username'
                 });
-
-
-
             //select2 editable
             var countries = [];
             $.each({ "CA": "Canada", "IN": "India", "NL": "Netherlands", "TR": "Turkey", "US": "United States"}, function(k, v) {
@@ -504,8 +470,6 @@
                 });
 
             });
-
-
 
             //////////////////////////////
             $('#profile-feed-1').ace_scroll({
