@@ -60,7 +60,7 @@ class Signin extends CI_Controller
             {
                 $ids = ['email' => $this->input->post('e-mail'),
                     "passwd" => $this->input->post('passwd')];
-                $response = post("http://localhost:8181", "/authentification", $ids);
+                $response = post(REST, "/authentification", $ids);
                 if($response['status']  === 200)
                 {
                     // cookies
