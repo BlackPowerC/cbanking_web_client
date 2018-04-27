@@ -7,6 +7,7 @@
  */
 
 defined('BASEPATH') OR exit('No direct script access allowed');
+defined('REST') OR exit('REST API unreachable');
 
 /**
  * Class Banking.
@@ -65,7 +66,7 @@ class Banking extends CI_Controller
         $data['error_msg'] = '' ;
         try
         {
-            $data['customer'] = get("http://localhost:8181/", "/customer/get/id/{$id_customer}");
+            $data['customer'] = get(REST, "/customer/get/id/{$id_customer}");
         }
         catch (Exception $exception)
         {
@@ -75,7 +76,7 @@ class Banking extends CI_Controller
         {
             try
             {
-                post("http://localhost:8181/", "/account/add", $post) ;
+                post(REST, "/account/add", $post) ;
             }
             catch (Exception $exception)
             {
@@ -114,7 +115,7 @@ class Banking extends CI_Controller
             ] ;
             try
             {
-                post("http://localhost:8181", "/operation/add/", $post) ;
+                post(REST, "/operation/add/", $post) ;
             }catch (Exception $exception)
             {
                 $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
@@ -123,7 +124,7 @@ class Banking extends CI_Controller
 
         try
         {
-            $data['account'] = get("http://localhost:8181", "/account/get/{$id_account}")['json'] ;
+            $data['account'] = get(REST, "/account/get/{$id_account}")['json'] ;
         }
         catch (Exception $exception)
         {
@@ -148,7 +149,7 @@ class Banking extends CI_Controller
         try
         {
             // Toutes les infos utiles du client en json to array
-            $this->data['customer'] = get('http://localhost:8181', "/customer/get/id/{$this->data['id_customer']}")['json'] ;
+            $this->data['customer'] = get(REST, "/customer/get/id/{$this->data['id_customer']}")['json'] ;
         }
         catch(Exception $exception)
         {
@@ -174,7 +175,7 @@ class Banking extends CI_Controller
         $data['accounts'] = NULL ;
         try
         {
-            $data['accounts'] = get("http://localhost:8181/", "/account/get/all/{$this->session->userdata("token")}") ;
+            $data['accounts'] = get(REST, "/account/get/all/{$this->session->userdata("token")}") ;
         }catch (Exception $exception)
         {
             $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>' ;
@@ -200,7 +201,7 @@ class Banking extends CI_Controller
         $data['account'] = NULL ;
         try
         {
-            $data['account'] = get("http://localhost:8181", "/account/get/{$id}")['json'] ;
+            $data['account'] = get(REST, "/account/get/{$id}")['json'] ;
         }
         catch (Exception $exception)
         {

@@ -7,6 +7,7 @@
  */
 
 defined('BASEPATH') OR exit('No direct script access allowed');
+defined('REST') OR exit('REST API unreachable');
 
 /**
  * Class Home.
@@ -45,17 +46,17 @@ class Home extends CI_Controller
         $this->data['error_msg'] = '' ;
         try
         {
-            $this->data['customers'] = get("http://localhost:8181",
+            $this->data['customers'] = get(REST,
                 "/customer/get/all") ;
 
-            $this->data['subordinates'] = post("http://localhost:8181",
+            $this->data['subordinates'] = post(REST,
                 "/employee/subordinate/get/all", ['token'=>$this->session->userdata('token')]) ;
         }
         catch(Exception $exception)
         {
             $this->data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
         }
-        
+
         // Récupération des infos depuis l'API Rest
         $this->load->view("home", $this->data) ;
     }

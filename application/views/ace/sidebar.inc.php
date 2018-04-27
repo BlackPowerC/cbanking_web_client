@@ -35,7 +35,7 @@
 
             <ul class="submenu">
                 <li class="">
-                    <a href="<?php echo BASE_URL.'index.php/management/customers'; ?>">
+                    <a href="<?php echo base_url().'index.php/management/customers'; ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Liste des clients
                     </a>
@@ -44,7 +44,7 @@
                 </li>
 
                 <li class="">
-                    <a href="<?php echo BASE_URL.'index.php/management/subscription'; ?>">
+                    <a href="<?php echo base_url().'index.php/management/subscription'; ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Inscrire un client
                     </a>
@@ -66,7 +66,7 @@
 
             <ul class="submenu">
                 <li class="">
-                    <a href="<?php echo BASE_URL.'index.php/management/subordinates'; ?>">
+                    <a href="<?php echo base_url().'index.php/management/subordinates'; ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Liste des subordonnés
                     </a>
@@ -75,7 +75,7 @@
                 </li>
 
                 <li class="">
-                    <a href="<?php echo BASE_URL.'index.php/management/subscription'; ?>">
+                    <a href="<?php echo base_url().'index.php/management/subscription'; ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Inscrire un subordonné
                     </a>
@@ -96,7 +96,7 @@
 
             <ul class="submenu">
                 <li class="">
-                    <a href="<?php echo BASE_URL.'index.php/banking/accounts'; ?>">
+                    <a href="<?php echo base_url().'index.php/banking/accounts'; ?>">
                         <i class="menu-icon fa fa-caret-right"></i>
                         Liste des comptes
                     </a>

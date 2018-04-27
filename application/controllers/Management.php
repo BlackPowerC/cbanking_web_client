@@ -1,6 +1,7 @@
 <?php
 
 defined('BASEPATH') OR exit('No direct script access allowed') ;
+defined('REST') OR exit('REST API unreachable');
 /**
  * Created by PhpStorm.
  * User: jordy
@@ -34,7 +35,7 @@ class Management extends CI_Controller
       $data['view'] = "ace/management/subordinates.php" ;
       try
       {
-          $data['employees'] = get("http://localhost:8181", "/employee/subordinate/get/all/{$this->session->userdata('token')}")['json'] ;
+          $data['employees'] = get(REST, "/employee/subordinate/get/all/{$this->session->userdata('token')}")['json'] ;
       }catch (Exception $exception)
       {
           $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
@@ -68,7 +69,7 @@ class Management extends CI_Controller
         $data['customer'] = null ;
         try
         {
-            $data['customer'] = get("http://localhost:8181", "/customer/get/id/{$id_customer}")['json'] ;
+            $data['customer'] = get(REST, "/customer/get/id/{$id_customer}")['json'] ;
             $data['name'] = $data['customer']['name'] ;
             $data['email'] = $data['customer']['email'] ;
             $data['surname'] = $data['customer']['surname'] ;
@@ -96,7 +97,7 @@ class Management extends CI_Controller
         $data['view'] = "ace/management/customers.php" ;
         try
         {
-            $data['customers'] = get("http://localhost:8181", '/customer/get/all') ;
+            $data['customers'] = get(REST, '/customer/get/all') ;
         }catch (Exception $exception)
         {
             $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
@@ -152,7 +153,7 @@ class Management extends CI_Controller
                     'type'=>$this->input->post("type")
                 ] ;
 
-                $response = post("http://localhost:8181",
+                $response = post(REST,
                     "/subscription/{$this->session->userdata('token')}",
                     $ids) ;
                 $data['status_code'] = $response['status'] ;
