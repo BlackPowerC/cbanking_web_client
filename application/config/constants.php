@@ -90,4 +90,4 @@ defined('VENDOR') or define('VENDOR', substr(BASEPATH,0, strlen(BASEPATH)-7).'ve
 // Le repertoire public, contenant les ressources de l'application (css, js et image)
 defined('PUBLIC') or define('PUBLIC', APPPATH.'public'.DIRECTORY_SEPARATOR) ;
 // L'url du serveur REST
-defined('REST') or define('REST', 'http://localhost:8181') ;
+defined('REST') or define('REST', 'http://default-cbanking.193b.starter-ca-central-1.openshiftapps.com/') ;
