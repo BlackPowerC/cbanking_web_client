@@ -7,10 +7,10 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="<?php echo base_url().'vendor/twbs/bootstrap/dist/css/bootstrap.css' ?>" id="bootstrap3" />
+    <link rel="stylesheet" href="<?php echo base_url().'application/public/twbs/bootstrap/dist/css/bootstrap.css' ?>" id="bootstrap3" />
     <link rel="stylesheet" href="../style/main.css" id="maincss" />
-    <script src="../vendor/components/jquery/jquery.js"></script>
-    <script src="../vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="<?php echo base_url().'application/public/components/jquery/jquery.js '?>"></script>
+    <script src="<?php echo base_url().'application/public/twbs/bootstrap/dist/js/bootstrap.js'?>"></script>
     <title>Connexion</title>
 </head>
 
