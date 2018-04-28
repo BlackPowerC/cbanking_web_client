@@ -75,10 +75,10 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
-	'username' => '',
-	'password' => '',
-	'database' => '',
+	'hostname' => 'us-cdbr-sl-dfw-01.cleardb.net',
+	'username' => 'bf1bb6928c7615',
+	'password' => 'ef14017c',
+	'database' => 'ibmsl_66dc99a3baae5153f53b',
 	'dbdriver' => 'mysqli',
 	'dbprefix' => '',
 	'pconnect' => FALSE,
