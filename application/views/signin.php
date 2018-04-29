@@ -7,10 +7,11 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="<?php echo HTML::img("assets/images/business.png") ?>" type="image/x-icon" />
     <link rel="stylesheet" href="<?php echo base_url().'vendor/twbs/bootstrap/dist/css/bootstrap.css' ?>" id="bootstrap3" />
-    <link rel="stylesheet" href="../style/main.css" id="maincss" />
-    <script src="../vendor/components/jquery/jquery.js"></script>
-    <script src="../vendor/twbs/bootstrap/dist/js/bootstrap.js"></script>
+    <link rel="stylesheet" href="<?php echo HTML::style("style/main")?>" id="maincss" />
+    <script src="<?php echo base_url()."vendor/components/jquery/jquery.js"?>"></script>
+    <script src="<?php echo base_url()."vendor/twbs/bootstrap/dist/js/bootstrap.js"?>"></script>
     <title>Connexion</title>
 </head>
 
@@ -26,7 +27,8 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
                     <span>Connectez-vous à votre compte !</span>
                 </div>
                 <div class="card">
-                    <img id="avatar" width="80" height="80" class="card-img-top" src="../vendor/img/avatar-login.png" title="avatar" alt="avatar"/>
+                    <img id="avatar" width="80" height="80" class="card-img-top"
+                      src="<?php echo HTML::img("assets/images/avatars/avatar-login.png");?>" title="avatar" alt="avatar"/>
                     <div class="card-body">
                         <?php
                             echo validation_errors('<div class="alert alert-warning">', '</div>');
