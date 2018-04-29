@@ -97,7 +97,7 @@ class Management extends CI_Controller
         $data['view'] = "ace/management/customers.php" ;
         try
         {
-            $data['customers'] = get(REST, '/customer/get/all') ;
+            $data['customers'] = get(REST, "/customer/get/all/{$this->session->userdata('token')}") ;
         }catch (Exception $exception)
         {
             $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
@@ -150,7 +150,8 @@ class Management extends CI_Controller
                     'surname'=>$this->input->post("surname"),
                     'email'=>$this->input->post("e-mail"),
                     'passwd'=>$this->input->post("passwd"),
-                    'type'=>$this->input->post("type")
+                    'type'=>$this->input->post("type"),
+                    'sexe'=>$this->input->post("sexe")
                 ] ;
 
                 $response = post(REST,
