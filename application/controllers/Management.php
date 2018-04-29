@@ -97,7 +97,7 @@ class Management extends CI_Controller
         $data['view'] = "ace/management/customers.php" ;
         try
         {
-            $data['customers'] = get(REST, '/customer/get/all') ;
+            $data['customers'] = get(REST, "/customer/get/all/{$this->session->userdata('token')}") ;
         }catch (Exception $exception)
         {
             $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';

@@ -56,7 +56,7 @@
                                     {?>
                                         <tr>
                                             <td>
-                                                <a title="Détails du client" href="<?php echo BASE_URL."index.php/banking/account/{$account['id']}" ;?>">
+                                                <a title="Détails du client" href="<?php echo base_url()."index.php/banking/account/{$account['id']}" ;?>">
                                                     <i class="fa fa-eye fa-2x"></i>
                                                 </a>
                                             </td>
@@ -70,7 +70,7 @@
                                                     </button>
                                                     <ul class="dropdown-menu">
                                                         <li class="dropdown-item">
-                                                            <a title="Dépot/Retrait" href="<?php echo BASE_URL."index.php/banking/operation/{$account['id']}" ?>">Dépot/Retrait</a>
+                                                            <a title="Dépot/Retrait" href="<?php echo base_url()."index.php/banking/operation/{$account['id']}" ?>">Dépot/Retrait</a>
                                                         </li>
                                                         <li class="dropdown-item">
                                                             <a title="Virement" href="#">Virement</a>
