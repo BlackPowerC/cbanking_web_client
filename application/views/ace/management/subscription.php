@@ -68,6 +68,14 @@
                                             <div style="width: 100%" class="form-group">
                                                 <input class="form-control" value="<?php echo set_value("passwd"); ?>" name="passwd" type="password" placeholder="Mot de passe"/>
                                             </div>
+
+                                            <div style="width: 100%" class="form-group">
+                                                <label class="label" for="">Sexe</label>
+                                                <select class="form-control" name="type">
+                                                    <option value="masculin">Masculin</option>
+                                                    <option value="feminin">Féminin</option>
+                                                </select>
+                                            </div>
                                             <div style="width: 100%" class="form-group">
                                                 <label class="label" for="">Type d'utilisateur</label>
                                                 <select class="form-control" name="type">
@@ -79,7 +87,7 @@
                                             </form>
                                         </div>
 
-                                        <div class="space-6"></div>
+                                        <div class="space-20"></div>
 
                                     </div>
                                 </div>

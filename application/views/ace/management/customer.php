@@ -96,7 +96,7 @@
                                 ?>
                                     <div class="hr hr2 hr-double"></div>
 
-                                    <div class="space-6"></div>
+                                    <div class="space-20"></div>
                                 </div>
                             </div>
                         </div>

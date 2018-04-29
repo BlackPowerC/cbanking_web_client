@@ -44,9 +44,20 @@
                                 <div class="col-xs-12 col-sm-3 center">
                                     <div>
                                         <span class="profile-picture">
-										    <img id="avatar" class="editable img-responsive" alt="Alex's Avatar" src="<?php echo HTML::img("assets/images/avatars/man.png")?>" />
+										                                <img id="avatar" class="editable img-responsive" alt="Avatar"
+                                                    src="
+                                                    <?php
+                                                    if(strcmp($this->session->userdata('sexe'), 'masculin') == 0)
+                                                    {
+                                                      echo HTML::img("assets/images/avatars/img_avatar1.png");
+                                                    }
+                                                    else
+                                                    {
+                                                       echo HTML::img("assets/images/avatars/img_avatar2.png");
+                                                    }
+                                                    ?>
+                                                    " />
                                         </span>
-
                                         <div class="space-4"></div>
 
                                         <div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right">

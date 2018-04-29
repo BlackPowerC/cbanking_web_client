@@ -32,6 +32,7 @@ class Signin extends CI_Controller
         $this->session->unset_userdata("token") ;
         $this->session->unset_userdata("name") ;
         $this->session->unset_userdata("surname") ;
+        $this->session->unset_userdata("sexe") ;
         session_destroy() ;
 
         redirect("signin", "Location", 302) ;
@@ -68,10 +69,12 @@ class Signin extends CI_Controller
                         'token' => $response['json']['token'],
                         'surname' => $response['json']['surname'],
                         'name' => $response['json']['name'],
+                        'sexe' => $response['json']['sexe'],
                         'email' => $this->input->post('e-mail')
                     ]);
                     set_cookie('token', $response['json']['token'], '86400');
                     set_cookie('name', $response['json']['name'], '86400');
+                    set_cookie('sexe', $response['json']['sexe'], '86400');
                     set_cookie('surname', $response['json']['surname'], '86400');
                     set_cookie('email', $this->input->post('e-mail'), '86400');
                     // redirection vers la page personnelles

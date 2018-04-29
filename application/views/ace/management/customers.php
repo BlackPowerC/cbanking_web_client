@@ -15,6 +15,7 @@
                 <td>Détails</td>
                 <td>Nom</td>
                 <td>Prénom</td>
+                <td>Sexe</td>
                 <td>Email</td>
                 <td>Action</td>
             </tr>
@@ -31,6 +32,7 @@
                     </td>
                     <td><?php echo $customer['name']; ?></td>
                     <td><?php echo $customer['surname']; ?></td>
+                    <td><?php echo $customer['sexe']; ?></td>
                     <td><?php echo $customer['email']; ?></td>
                     <td>
                         <a title="Créer un compte" href="<?php echo "../banking/create/{$customer['id']}" ?>">
