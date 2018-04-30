@@ -57,21 +57,21 @@
                                             echo form_open("");
                                             ?>
                                             <div style="width: 100%" class="form-group">
-                                                <input class="form-control" value="<?php echo set_value("name"); ?>" name="name" type="text" placeholder="Nom réel"/>
+                                                <input class="form-control" value="" name="name" type="text" placeholder="Nom réel"/>
                                             </div>
                                             <div style="width: 100%" class="form-group">
-                                                <input class="form-control" value="<?php echo set_value("surname"); ?>" name="surname" type="text" placeholder="Prénom"/>
+                                                <input class="form-control" value="" name="surname" type="text" placeholder="Prénom"/>
                                             </div>
                                             <div style="width: 100%" class="form-group">
-                                                <input class="form-control" value="<?php echo set_value("e-mail"); ?>" name="e-mail" type="email" placeholder="Adresse électronique"/>
+                                                <input class="form-control" value="" name="e-mail" type="email" placeholder="Adresse électronique"/>
                                             </div>
                                             <div style="width: 100%" class="form-group">
-                                                <input class="form-control" value="<?php echo set_value("passwd"); ?>" name="passwd" type="password" placeholder="Mot de passe"/>
+                                                <input class="form-control" value="" name="passwd" type="password" placeholder="Mot de passe"/>
                                             </div>
 
                                             <div style="width: 100%" class="form-group">
                                                 <label class="label" for="">Sexe</label>
-                                                <select class="form-control" name="type">
+                                                <select class="form-control" name="sexe">
                                                     <option value="masculin">Masculin</option>
                                                     <option value="feminin">Féminin</option>
                                                 </select>

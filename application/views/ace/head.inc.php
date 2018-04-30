@@ -41,4 +41,6 @@
     <script src="<?php echo HTML::script('assets/js/html5shiv.min') ;?>"></script>
     <script src="<?php echo HTML::script('assets/js/respond.min') ;?>"></script>
     <![endif]-->
+
+    <script src="<?php echo HTML::script('js/hide_feed_back') ;?>"></script>
 </head>

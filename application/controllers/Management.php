@@ -150,13 +150,15 @@ class Management extends CI_Controller
                     'surname'=>$this->input->post("surname"),
                     'email'=>$this->input->post("e-mail"),
                     'passwd'=>$this->input->post("passwd"),
-                    'type'=>$this->input->post("type")
+                    'type'=>$this->input->post("type"),
+                    'sexe'=>$this->input->post("sexe")
                 ] ;
 
                 $response = post(REST,
                     "/subscription/{$this->session->userdata('token')}",
                     $ids) ;
-                $data['status_code'] = $response['status'] ;
+
+                $data['error_msg'] = 'Inscription éffectuée avec succès !' ;
             }catch (Exception $exception)
             {
                 $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';

@@ -15,8 +15,6 @@
 
 <body class="no-skin">
 
-<?php $this->load->view("client_error") ?>
-
 <?php $this->load->view("ace/headbar.inc.php") ;?>
 
 <div class="main-container ace-save-state" id="main-container">
