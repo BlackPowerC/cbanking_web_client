@@ -72,8 +72,8 @@
                                             <div style="width: 100%" class="form-group">
                                                 <label class="label" for="">Sexe</label>
                                                 <select class="form-control" name="type">
-                                                    <option value="masculin">Masculin</option>
-                                                    <option value="feminin">Féminin</option>
+                                                    <option value="0">Masculin</option>
+                                                    <option value="1">Féminin</option>
                                                 </select>
                                             </div>
                                             <div style="width: 100%" class="form-group">

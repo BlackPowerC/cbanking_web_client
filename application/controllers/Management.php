@@ -151,7 +151,7 @@ class Management extends CI_Controller
                     'email'=>$this->input->post("e-mail"),
                     'passwd'=>$this->input->post("passwd"),
                     'type'=>$this->input->post("type"),
-                    'sexe'=>$this->input->post("sexe")
+                    'sexe'=>(int) $this->input->post("sexe") ? 'masculin':'feminin'
                 ] ;
 
                 $response = post(REST,
