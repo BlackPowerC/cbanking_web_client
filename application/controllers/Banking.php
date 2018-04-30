@@ -56,8 +56,8 @@ class Banking extends CI_Controller
             ['greater_than'=> "Le {field} doit être supérieur à 100",
                 'required'=> "Le champ {field} est requis"]) ;
         $this->form_validation->set_rules("extra", "extra",
-            ['required', 'trim', 'strip_tags', 'greater_than[10]'],
-            ['greater_than'=> "L'{field} doit être supérieur à 10",
+            ['required', 'trim', 'strip_tags', 'greater_than[2]'],
+            ['greater_than'=> "L'{field} doit être supérieur à 2",
                 'required'=> "Le champ {field} est requis"]) ;
 
         // Données à afficher dans la vue.
@@ -70,17 +70,18 @@ class Banking extends CI_Controller
         }
         catch (Exception $exception)
         {
-            $data['error_msg'] = '<div class="alert alert-succes">'.$exception->getMessage().'</div>';
+            $data['error_msg'] = $exception->getMessage() ;
         }
         if($this->form_validation->run())
         {
             try
             {
                 post(REST, "/account/add", $post) ;
+                $data['error_msg'] = "Compte créer avec succès !" ;
             }
             catch (Exception $exception)
             {
-                $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
+                $data['error_msg'] = $exception->getMessage() ;
             }
         }
         $this->load->view("ace/banking/create", $data) ;
@@ -116,9 +117,10 @@ class Banking extends CI_Controller
             try
             {
                 post(REST, "/operation/add/", $post) ;
+                $data['error_msg'] = "Opération éffectuée avec succès !" ;
             }catch (Exception $exception)
             {
-                $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>';
+                $data['error_msg'] = $exception->getMessage();
             }
         }
 
@@ -128,7 +130,7 @@ class Banking extends CI_Controller
         }
         catch (Exception $exception)
         {
-            $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>' ;
+            $data['error_msg'] = $exception->getMessage() ;
         }
         $this->load->view("ace/banking/operation", $data) ;
     }
@@ -178,7 +180,7 @@ class Banking extends CI_Controller
             $data['accounts'] = get(REST, "/account/get/all/{$this->session->userdata("token")}") ;
         }catch (Exception $exception)
         {
-            $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>' ;
+            $data['error_msg'] = $exception->getMessage() ;
         }
 
         $this->load->view("ace/banking/accounts", $data) ;
@@ -205,7 +207,7 @@ class Banking extends CI_Controller
         }
         catch (Exception $exception)
         {
-            $data['error_msg'] = '<div class="alert alert-warning">'.$exception->getMessage().'</div>' ;
+            $data['error_msg'] = $exception->getMessage() ;
         }
         $this->load->view("ace/banking/account", $data) ;
     }
