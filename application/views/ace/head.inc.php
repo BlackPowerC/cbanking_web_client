@@ -6,7 +6,7 @@
     <link rel="shortcut icon" href="<?php echo HTML::img("assets/images/business.png") ?>" type="image/x-icon" />
 
     <meta name="description" content="overview &amp; stats" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- bootstrap & fontawesome -->
     <link rel="stylesheet" href="<?php echo HTML::style('/assets/css/bootstrap.min') ;?>" />
