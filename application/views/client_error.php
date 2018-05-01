@@ -15,7 +15,7 @@ if($error_msg !== "")
             <span class="text-center"><?php echo $error_msg; ?>
                 <button onclick="hideFeedBack()" style="float: right" class="fa fa-crosshairs"></button>
             </span>
-            </div>' ;
+            </div>
         </div>
     </div>
 <?php
