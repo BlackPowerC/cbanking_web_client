@@ -23,7 +23,15 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
   <div class="container">
     <!-- Affichage des méssage d'erreur -->
       <?php echo  $error_msg; ?>
+        <div class="header" style="margin-top: 5%;">
+          <h2 class="title text-center">Futura Banque</h2>
+        </div>
          <div class="card card-container">
+
+             <div class="card-header" style="margin-bottom: 5%;">
+                 <h5 class="card-title text-center">Connexion employé</h5>
+             </div>
+
              <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
              <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
              <p id="profile-name" class="profile-name-card"></p>
