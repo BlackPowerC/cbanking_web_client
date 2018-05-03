@@ -31,10 +31,16 @@
                         <div>
                             <div class="well text-center">
                                 <span style="font-size: 1.2em;">
-                                    Historique du compte N° <?php echo $account['id']; ?> de
-                                    <?php echo $account['customer']['name'].' '.$account['customer']['surname']; ?>
+                                    Historique du compte <mark>futurabank-<?php echo $account['id']; ?> </mark>de
+                                    <a href="<?php echo base_url()."index.php/management/customer/{$account['customer']['id']}"; ?>"
+                                       title="<?php echo  $account['customer']['name'].' '.$account['customer']['surname']; ?>"
+                                    >
+                                        <?php echo $account['customer']['name'].' '.$account['customer']['surname']; ?>
+                                    </a>
+
                                 </span>
                             </div>
+                            <h3>Sommaire</h3>
                             <table class="table table-striped">
                                 <thead class="thead-inverse">
                                     <tr>
@@ -48,9 +54,28 @@
                                     <tr>
                                         <td>Création</td>
                                         <td><?php echo $account['dateCreation'] ;?></td>
-                                        <td><?php echo $account['balance']; ?></td>
+                                        <td><?php echo $account['initialBalance']." CFA"; ?></td>
                                         <td><?php echo $account['employee']['name'].' '.$account['employee']['name'] ?></td>
                                     </tr>
+                                    <tr>
+                                        <td>Solde</td>
+                                        <td><?php echo date("d-m-Y") ;?></td>
+                                        <td><?php echo $account['balance']." CFA"; ?></td>
+                                        <td></td>
+                                    </tr>
+                                  </tbody>
+                            </table>
+                            <h3>Historique</h3>
+                            <table class="table table-striped">
+                                <thead class="thead-inverse">
+                                    <tr>
+                                        <td>Description</td>
+                                        <td>Date</td>
+                                        <td>Montant</td>
+                                        <td>Employé</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
                                 <?php
                                 if(count($account['operations']) > 0)
                                 {?>
@@ -61,7 +86,7 @@
                                         <tr>
                                             <td><?php echo ucfirst($operation['type']) ;?></td>
                                             <td><?php echo $operation['date'] ;?></td>
-                                            <td><?php echo $operation['amount']; ?></td>
+                                            <td><?php echo $operation['amount']." CFA"; ?></td>
                                             <td><?php echo $operation['employee']['name'].' '.$operation['employee']['name'] ?></td>
                                         </tr>
                                     <?php

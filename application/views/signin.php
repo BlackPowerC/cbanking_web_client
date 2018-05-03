@@ -9,12 +9,12 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
     <meta charset="UTF-8">
     <!-- css stylesheet -->
     <link rel="shortcut icon" href="<?php echo HTML::img("assets/images/business.png") ?>" type="image/x-icon" />
-    <link rel="stylesheet" href="<?php echo base_url().'public/twbs/bootstrap/dist/css/bootstrap.css'; ?>">
+    <link rel="stylesheet" href="<?php echo base_url().'application/public/twbs/bootstrap/dist/css/bootstrap.css'; ?>">
     <link rel="stylesheet" href="<?php echo HTML::style("style/signin")?>" id="signincss" />
     <!-- Script js -->
     <script src="<?php echo HTML::script("js/signin")?>"></script>
-    <script src="<?php echo base_url()."public/components/jquery/jquery.js"?>"></script>
-    <script src="<?php echo base_url()."public/twbs/bootstrap/dist/js/bootstrap.js"?>"></script>
+    <script src="<?php echo base_url()."application/public/components/jquery/jquery.js"?>"></script>
+    <script src="<?php echo base_url()."application/public/twbs/bootstrap/dist/js/bootstrap.js"?>"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion</title>
 </head>
@@ -23,7 +23,15 @@ defined('VENDOR') OR exit('No direct script access allowed') ;
   <div class="container">
     <!-- Affichage des méssage d'erreur -->
       <?php echo  $error_msg; ?>
+        <div class="header" style="margin-top: 5%;">
+          <h2 class="title text-center">Futura Banque</h2>
+        </div>
          <div class="card card-container">
+
+             <div class="card-header" style="margin-bottom: 5%;">
+                 <h5 class="card-title text-center">Connexion employé</h5>
+             </div>
+
              <!-- <img class="profile-img-card" src="//lh3.googleusercontent.com/-6V8xOA6M7BA/AAAAAAAAAAI/AAAAAAAAAAA/rzlHcD0KYwo/photo.jpg?sz=120" alt="" /> -->
              <img id="profile-img" class="profile-img-card" src="//ssl.gstatic.com/accounts/ui/avatar_2x.png" />
              <p id="profile-name" class="profile-name-card"></p>
