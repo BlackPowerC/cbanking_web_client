@@ -69,7 +69,7 @@ class Management extends CI_Controller
         $data['customer'] = null ;
         try
         {
-            $data['customer'] = get(REST, "/customer/get/id/{$id_customer}")['json'] ;
+            $data['customer'] = get(REST, "/customer/get/id/{$id_customer}?token={$this->session->userdata('token')}")['json'] ;
             $data['name'] = $data['customer']['name'] ;
             $data['email'] = $data['customer']['email'] ;
             $data['surname'] = $data['customer']['surname'] ;

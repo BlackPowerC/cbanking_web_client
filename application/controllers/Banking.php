@@ -66,7 +66,7 @@ class Banking extends CI_Controller
         $data['error_msg'] = '' ;
         try
         {
-            $data['customer'] = get(REST, "/customer/get/id/{$id_customer}");
+            $data['customer'] = get(REST, "/customer/get/id/{$id_customer}?token={$this->session->userdata('token')}");
         }
         catch (Exception $exception)
         {
@@ -126,7 +126,7 @@ class Banking extends CI_Controller
 
         try
         {
-            $data['account'] = get(REST, "/account/get/{$id_account}")['json'] ;
+            $data['account'] = get(REST, "/account/get/{$id_account}?token={$this->session->userdata('token')}")['json'] ;
         }
         catch (Exception $exception)
         {
@@ -203,7 +203,7 @@ class Banking extends CI_Controller
         $data['account'] = NULL ;
         try
         {
-            $data['account'] = get(REST, "/account/get/{$id}")['json'] ;
+            $data['account'] = get(REST, "/account/get/{$id}?token={$this->session->userdata('token')}")['json'] ;
         }
         catch (Exception $exception)
         {
