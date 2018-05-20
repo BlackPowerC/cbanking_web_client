@@ -1,3 +1,12 @@
+<?php
+/**
+ * Created by PhpStorm.
+ * User: jordy
+ * Date: 07/04/18
+ * Time: 09:55
+ */?>
+
+<!-- Vue de la méthode Banking::create($id) -->
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,100 +27,87 @@
     <div class="main-content">
         <div class="main-content-inner">
 
-            <?php $this->load->view("ace/navsearch.inc.php") ?>
+          <?php $this->load->view("ace/navsearch.inc.php") ?>
 
             <div class="page-content">
               <?php $this->load->view("client_error") ; ?>
 
                 <div class="row">
-                    <div class="col-xs-12">
+                    <div class="">
                         <!-- PAGE CONTENT BEGINS -->
                         <div>
-                            <?php $this->load->view("ace/profile.inc.php") ?>
+                            <div id="user-profile-1" class="row">
 
-                            <div class="widget-box transparent">
-                                <div class="widget-header widget-header-small">
-                                    <h4 class="widget-title blue smaller">
-                                        <i class="ace-icon fa fa-rss orange"></i>
-                                        Listes des comptes
-                                    </h4>
-                                </div>
-                                <?php
-                                if(key_exists('accounts', $customer))
-                                {
-                                ?>
-                                <a href="<?php echo base_url()."index.php/banking/create/{$id_customer}"; ?>">Créer un nouveau compte !</a>
-                                <table class="table table-stripped">
-                                    <thead>
-                                    <tr>
-                                        <td>Détails</td>
-                                        <td>Date de création</td>
-                                        <td>Solde</td>
-                                        <td>Action</td>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <?php
-                                    foreach($customer['accounts'] as $account)
-                                    {?>
-                                        <tr>
-                                            <td>
-                                                <a title="Détails du client" href="<?php echo base_url()."index.php/banking/account/{$account['id']}" ;?>">
-                                                    <i class="fa fa-eye fa-2x"></i>
-                                                </a>
-                                            </td>
-                                            <td><?php echo $account['creationDate']; ?></td>
-                                            <td><?php echo $account['balance']; ?></td>
-                                            <td>
-                                                <div class="dropdown">
-                                                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-                                                        Faire une opération
-                                                        <i class="fa fa-plus"></i>
-                                                    </button>
-                                                    <ul class="dropdown-menu">
-                                                        <li class="dropdown-item">
-                                                            <a title="Dépot/Retrait" href="<?php echo base_url()."index.php/banking/operation/{$account['id']}" ?>">Dépot/Retrait</a>
-                                                        </li>
-                                                        <li class="dropdown-item">
-                                                            <a title="Virement" href="<?php echo base_url()."index.php/banking/virement/{$account['id']}" ?>">Virement</a>
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        <?php
-                                    }
-                                    ?>
-                                    </tbody>
-                                </table>
-                                <?php
-                                }
-                                else
-                                {?>
-                                    <div class="alert alert-info">
-                                        <a href="<?php echo base_url()."index.php/banking/create/{$id_customer}"; ?>">Créer un premier compte !</a>
-                                    </div>
-                                    <?php
-                                }
-                                ?>
-                                    <div class="hr hr2 hr-double"></div>
+                                <div class="" style="width: 50%; margin: auto;">
 
                                     <div class="space-20"></div>
+
+                                    <div class="widget-box transparent">
+                                        <div class="widget-header widget-header-small">
+                                            <h2 class="widget-title blue smaller">
+                                                <i class="ace-icon fa fa-rss orange"></i>
+                                                Virement depuis le compte N° <?php echo "{$account_src['id']} de {$account_src['customer']['name']} {$account_src['customer']['surname']}" ; ?>
+                                            </h2>
+                                        </div
+                                        <div class="space-20"></div>
+                                        <div>
+                                            <?php
+                                            echo validation_errors('<div class="alert alert-warning">', '</div>') ;
+                                            echo form_open("");
+                                            ?>
+                                            <!-- Type de transaction -->
+                                            <div class="form-group">
+                                                <select name="account_dest" title="Compte destinataire" class="form-control">
+                                                    <?php
+                                                    if($account_dest !== NULL && count($account_dest) > 1)
+                                                    {
+                                                        foreach ($account_dest as $item)
+                                                        {
+                                                            if($item['id'] != $account_src['id'])
+                                                            {?>
+                                                                <option value="<?php echo $item['id'];?>">
+                                                                    <?php echo $item['id'].' '.$item['customer']['name'].'-'.$item['customer']['surname'] ;?>
+                                                                </option>
+                                                            <?php
+                                                            }
+                                                        }
+                                                    }
+                                                    ?>
+                                                </select>
+                                            </div>
+                                            <!-- Montant de la transaction -->
+                                            <div class="form-group">
+                                                <?php
+                                                echo form_input([
+                                                    "name"=>"balance",
+                                                    "type"=>"number",
+                                                    "placeholder"=>"Montant",
+                                                    "class"=>"form-control",
+                                                    "title"=>"Montant de la transaction"
+                                                ]) ;
+                                                ?>
+                                            </div>
+                                            <input style="width: 100%" id="btn-submit" class="btn btn-primary" type="submit" value="Envoyer" />
+                                            </form>
+                                        </div>
+
+                                        <div class="space-6"></div>
+
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    <!-- PAGE CONTENT ENDS -->
-                    </div><!-- /.col -->
-                </div><!-- /.row -->
-            </div><!-- /.page-content -->
-        </div>
-    </div><!-- /.main-content -->
+                            <!-- PAGE CONTENT ENDS -->
+                        </div><!-- /.col -->
+                    </div><!-- /.row -->
+                </div><!-- /.page-content -->
+            </div>
+        </div><!-- /.main-content -->
 
-    <?php $this->load->view("ace/footer.inc.php") ?>
+        <?php $this->load->view("ace/footer.inc.php") ?>
 
-    <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
-        <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
-    </a>
+        <a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+            <i class="ace-icon fa fa-angle-double-up icon-only bigger-110"></i>
+        </a>
     </div><!-- /.main-container -->
 
     <!-- basic scripts -->
@@ -135,6 +131,9 @@
                     type: 'text',
                     name: 'username'
                 });
+
+
+
             //select2 editable
             var countries = [];
             $.each({ "CA": "Canada", "IN": "India", "NL": "Netherlands", "TR": "Turkey", "US": "United States"}, function(k, v) {
@@ -213,8 +212,6 @@
                 }
             });
 
-
-
             //custom date editable
             $('#signup').editable({
                 type: 'adate',
@@ -241,7 +238,6 @@
                     //,nativeUI: true//if true and browser support input[type=number], native browser control will be used
                 }
             });
-
 
             $('#login').editable({
                 type: 'slider',
@@ -271,8 +267,6 @@
                 success: function(response, newValue) {
                 }
             });
-
-
 
             // *** editable avatar *** //
             try {//ie8 throws some harmless exceptions, so let's catch'em
@@ -334,7 +328,6 @@
                             return deferred.promise();
                         }
 
-
                         //dummy upload
                         setTimeout(function(){
                             if("FileReader" in window) {
@@ -364,20 +357,6 @@
                 })
             }catch(e) {}
 
-            /**
-             //let's display edit mode by default?
-             var blank_image = true;//somehow you determine if image is initially blank or not, or you just want to display file input at first
-             if(blank_image) {
-					$('#avatar').editable('show').on('hidden', function(e, reason) {
-						if(reason == 'onblur') {
-							$('#avatar').editable('show');
-							return;
-						}
-						$('#avatar').off('hidden');
-					})
-				}
-             */
-
             //another option is using modals
             $('#avatar2').on('click', function(){
                 var modal =
@@ -403,7 +382,6 @@
                       </div>\
                      </div>\
                     </div>';
-
 
                 var modal = $(modal);
                 modal.modal("show").on("hidden", function(){
@@ -450,7 +428,6 @@
                         working = false;
                     });
 
-
                     setTimeout(function(){
                         deferred.resolve();
                     } , parseInt(Math.random() * 800 + 800));
@@ -485,7 +462,6 @@
             });
 
             ///////////////////////////////////////////
-
             //right & left position
             //show the user info on right or left depending on its position
             $('#user-profile-2 .memberdiv').on('mouseenter touchstart', function(){
@@ -505,7 +481,6 @@
             }).on('click', function(e) {
                 e.preventDefault();
             });
-
 
             ///////////////////////////////////////////
             $('#user-profile-3')
@@ -530,7 +505,6 @@
 
             $('#user-profile-3').find('input[type=file]').ace_file_input('show_file_list', [{type: 'image', name: $('#avatar').attr('src')}]);
 
-
             ////////////////////
             //change profile
             $('[data-toggle="buttons"] .btn').on('click', function(e){
@@ -539,8 +513,6 @@
                 $('.user-profile').parent().addClass('hide');
                 $('#user-profile-'+which).parent().removeClass('hide');
             });
-
-
 
             /////////////////////////////////////
             $(document).one('ajaxloadstart.page', function(e) {

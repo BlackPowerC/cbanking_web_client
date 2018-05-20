@@ -86,7 +86,7 @@
                                                                         <a title="Dépot/Retrait" href="<?php echo base_url()."index.php/banking/operation/{$account['id']}" ?>">Dépot/Retrait</a>
                                                                     </li>
                                                                     <li class="dropdown-item">
-                                                                        <a title="Virement" href="#">Virement</a>
+                                                                        <a title="Virement" href="<?php echo base_url()."index.php/banking/virement/{$account['id']}" ?>">Virement</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>
