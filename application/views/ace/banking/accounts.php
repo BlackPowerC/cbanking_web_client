@@ -45,7 +45,8 @@
                                         <div class="widget-header widget-header-small">
                                             <h4 class="widget-title blue smaller">
                                                 <i class="ace-icon fa fa-rss orange"></i>
-                                                Listes des Comptes
+                                                Listes des comptes
+                                                <?php $this->load->view("ace/print.inc.php") ; ?>
                                             </h4>
                                         </div>
                                         <?php
@@ -86,7 +87,7 @@
                                                                         <a title="Dépot/Retrait" href="<?php echo base_url()."index.php/banking/operation/{$account['id']}" ?>">Dépot/Retrait</a>
                                                                     </li>
                                                                     <li class="dropdown-item">
-                                                                        <a title="Virement" href="#">Virement</a>
+                                                                        <a title="Virement" href="<?php echo base_url()."index.php/banking/virement/{$account['id']}" ?>">Virement</a>
                                                                     </li>
                                                                 </ul>
                                                             </div>

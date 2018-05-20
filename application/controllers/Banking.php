@@ -135,6 +135,54 @@ class Banking extends CI_Controller
         $this->load->view("ace/banking/operation", $data) ;
     }
 
+    /**
+     * Page de virement
+     * @param int $account_src Id du compte source
+     */
+    public function virement(int $account_src)
+    {
+        // Règle de validation
+        $this->form_validation->set_rules("balance", "montant du virement",
+            ['required', 'trim', 'strip_tags', 'greater_than[1]'],
+            ['greater_than'=> "Le {field} doit être supérieur à 1",
+                'required'=> "Le champ {field} est requis"]) ;
+
+        $data['error_msg'] = "" ;
+        $data['name'] = $this->session->userdata('name') ;
+        $data['account'] = NULL ;
+
+        if($this->form_validation->run())
+        {
+            $balance = floatval($this->input->post('balance')) ;
+            $dest = intval($this->input->post('account_dest'));
+            $post = [
+                'date'=> date("d-m-Y H:i:s"), // date de l'opération
+                'balance'=>$balance, // montant initiale
+                'dest'=>$dest, // compte de destination
+                'src'=>$account_src, // compte de prélèvement
+            ] ;
+            try
+            {
+                post(REST, "/virement/add?token={$this->session->userdata('token')}", $post) ;
+                $data['error_msg'] = "Virement éffectuée avec succès !" ;
+            }catch (Exception $exception)
+            {
+                $data['error_msg'] = $exception->getMessage();
+            }
+        }
+
+        try
+        {
+            $data['account_src'] = get(REST, "/account/get/{$account_src}?token={$this->session->userdata('token')}")['json'] ;
+            $data['account_dest'] = get(REST, "/account/get/all/{$this->session->userdata('token')}")['json'] ;
+        }
+        catch (Exception $exception)
+        {
+            $data['error_msg'] = $exception->getMessage() ;
+        }
+        $this->load->view("ace/banking/virement", $data) ;
+    }
+
     public function index()
     {
         // En cas de non connexion

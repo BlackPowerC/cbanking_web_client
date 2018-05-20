@@ -2,7 +2,8 @@
     <div class="widget-header widget-header-small">
         <h4 class="widget-title blue smaller">
             <i class="ace-icon fa fa-rss orange"></i>
-            Listes des Clients
+            Listes des clients
+            <?php $this->load->view("ace/print.inc.php") ; ?>
         </h4>
     </div>
     <?php

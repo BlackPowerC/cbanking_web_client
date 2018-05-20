@@ -3,6 +3,7 @@
         <h4 class="widget-title blue smaller">
             <i class="ace-icon fa fa-rss orange"></i>
             Listes des subordonnés
+            <?php $this->load->view("ace/print.inc.php") ; ?>
         </h4>
     </div>
     <?php
