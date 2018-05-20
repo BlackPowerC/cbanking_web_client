@@ -91,3 +91,5 @@ defined('VENDOR') or define('VENDOR', substr(BASEPATH,0, strlen(BASEPATH)-7).'ve
 defined('PUBLIC') or define('PUBLIC', APPPATH.'public'.DIRECTORY_SEPARATOR) ;
 // L'url du serveur REST
 defined('REST') or define('REST', 'http://localhost:8181') ;
+// Clé convertAPI
+defined('CONVERT_API_SECRET') or define('CONVERT_API_SECRET', 'fbk5nFeb5aFd2EPS') ;
